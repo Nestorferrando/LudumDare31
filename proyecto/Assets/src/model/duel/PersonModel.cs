@@ -21,6 +21,7 @@ public class PersonModel
     {
         this.role = role;
         this._hiddenBehindBarrel = false;
+        this._Alive = true;
     }
 
     public Role Role

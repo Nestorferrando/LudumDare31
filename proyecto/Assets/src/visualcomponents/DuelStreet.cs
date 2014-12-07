@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using Assets.scripts;
 using Assets.scripts.input;
 using Assets.src.visualcomponents;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 using Random = System.Random;
 
 
@@ -15,18 +17,20 @@ public class DuelStreet : MonoBehaviour
 
     private static Random random = new Random();
 
-    private readonly Vector2 inmigrant1InitialPosition = new Vector2(11.04f, -2.05f);
-    private readonly Vector2 inmigrant2InitialPosition = new Vector2(11.04f, -2.05f);
-    private readonly Vector2 inmigrant3InitialPosition = new Vector2(11.53f, -4.39f);
+    private readonly Vector2 inmigrant1InitialPosition = new Vector3(11.04f, -2.05f,0);
+    private readonly Vector2 inmigrant2InitialPosition = new Vector3(12.43f, -3.06f,-0.1f);
+    private readonly Vector2 inmigrant3InitialPosition = new Vector3(11.53f, -4.39f,-0.2f);
 
 
     private bool duelEnabled;
     private DuelResult duelResult;
 
-    private Person[] inmigrants;
+    private Inmigrant[] inmigrants;
     private int activeInmigrants;
 
     private Sheriff sheriff;
+
+    private FrontBarrel frontBarrel;
 
 
 
@@ -34,7 +38,8 @@ public class DuelStreet : MonoBehaviour
     private void Start()
     {
         sheriff = GetComponentsInChildren<Sheriff>()[0];
-        inmigrants = GetComponentsInChildren<Person>();
+        inmigrants = GetComponentsInChildren<Inmigrant>();
+        frontBarrel = GetComponentsInChildren<FrontBarrel>()[0];
         duelEnabled = false;
 
     }
@@ -44,25 +49,30 @@ public class DuelStreet : MonoBehaviour
         sheriff.Model = model;
     }
 
-    public void resetWave(List<Role> roles)
+    public void resetWave(Role[] roles)
     {
 
-        for (int i = 0; i < roles.Count; i++)
+        for (int i = 0; i < roles.Length; i++)
         {
-            inmigrants[i].Model = new InmigrantModel(roles.ElementAt(i));
+            inmigrants[i].Model = new InmigrantModel(roles[i]);
         }
 
         inmigrants[0].moveInstantlyToPosition(inmigrant1InitialPosition);
         inmigrants[1].moveInstantlyToPosition(inmigrant2InitialPosition);
         inmigrants[2].moveInstantlyToPosition(inmigrant3InitialPosition);
 
-        activeInmigrants = roles.Count;
+        activeInmigrants = roles.Length;
 
     }
 
     public void updateSheriffModel(SheriffModel model)
     {
         sheriff.Model = model;
+    }
+
+    public SheriffModel getSheriffModel()
+    {
+        return sheriff.Model;
     }
 
 
@@ -88,6 +98,11 @@ public class DuelStreet : MonoBehaviour
     {
         duelEnabled = true;
 
+        for (int i = 0; i < activeInmigrants; i++)
+        {
+            inmigrants[i].crouch();
+            inmigrants[i].Model.startDuel();
+        }
     }
 
 
@@ -167,18 +182,18 @@ public class DuelStreet : MonoBehaviour
     {
         bool enemyShoots = false;
 
-        switch (inmigrants[i].Model.InmigrantState)
+        switch (inmigrants[i].Model.State)
         {
-            case InmigrantState.crouching:
+            case PersonState.crouch:
                 inmigrants[i].standUp();
                 break;
 
-            case InmigrantState.idle:
+            case PersonState.idle:
                 inmigrants[i].Model.tryToShoot();
                 inmigrants[i].performShootAnimation();
                 enemyShoots = true;
                 break;
-            case InmigrantState.shooting:
+            case PersonState.shooting:
                 inmigrants[i].crouch();
                 break;
         }
@@ -246,5 +261,15 @@ public class DuelStreet : MonoBehaviour
         }
         return sheriffShoots;
     }
+
+    public bool enemiesCloseFromFrontBarrels()
+    {
+        if (inmigrants[2].transform.position.x < frontBarrel.transform.position.x)
+        {
+            return true;
+        }
+        return false;
+    }
+
 }
 

@@ -12,7 +12,7 @@ public class City : MonoBehaviour
     private static readonly int NEUTRAL_BUILDINGS_AMOUNT = 3;
 
 
-    private CityModel cityModel;
+    private CityModel cityModel = new CityModel();
 
 
 
@@ -20,7 +20,6 @@ public class City : MonoBehaviour
 	// Use this for initialization
 	void Start () {
 
-        cityModel=new CityModel();
 	
 	}
 	

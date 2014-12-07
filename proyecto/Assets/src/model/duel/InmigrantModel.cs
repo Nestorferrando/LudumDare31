@@ -12,18 +12,18 @@ public class InmigrantModel : PersonModel
 
     protected float crouchTime;
 
-    protected InmigrantState inmigrantState;
+    protected PersonState state;
 
     public InmigrantModel(Role role) :base(role)
     {
-        inmigrantState = InmigrantState.idle;
+        state = PersonState.idle;
     }
 
 
     public Boolean tryToShoot()
     {
         shootTime = Time.realtimeSinceStartup;
-        inmigrantState = InmigrantState.shooting;
+        state = PersonState.shooting;
         return true;
     }
 
@@ -31,12 +31,13 @@ public class InmigrantModel : PersonModel
     {
         if (hidden)
         {
-            inmigrantState = InmigrantState.crouching;
+            state = PersonState.crouch;
+            crouchTime = Time.realtimeSinceStartup + (float)(random.NextDouble() * GameRules.inmigrantCrouchIntervalRandom);
         }
         else
         {
-            crouchTime = Time.realtimeSinceStartup + (float)(random.NextDouble() * GameRules.inmigrantCrouchIntervalRandom);
-            inmigrantState = InmigrantState.idle;
+            state = PersonState.idle;
+            standUpTime = Time.realtimeSinceStartup;
         }
         base.setHiddenBehindBarrel(hidden);
     }
@@ -46,12 +47,12 @@ public class InmigrantModel : PersonModel
     {
         crouchTime = Time.realtimeSinceStartup + GameRules.inmigrantMinCrouchInverval+ (float)(random.NextDouble() * GameRules.inmigrantCrouchIntervalRandom);
         _hiddenBehindBarrel = true;
-        inmigrantState = InmigrantState.crouching;
+        state = PersonState.crouch;
     }
 
-    public InmigrantState InmigrantState
+    public PersonState State
     {
-        get { return inmigrantState; }
+        get { return state; }
     }
 
 

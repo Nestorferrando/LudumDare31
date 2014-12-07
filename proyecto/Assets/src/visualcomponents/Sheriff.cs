@@ -7,16 +7,16 @@ public class Sheriff : MonoBehaviour
 
     private SheriffModel model = new SheriffModel(Role.BusinessMan, Role.Criminal);
 
-    private InmigrantState currentState;
-    private InmigrantState proposedState;
+    private PersonState currentState;
+    private PersonState proposedState;
     public Boolean facingLeft;
 
 
 
     public Sheriff()
     {
-        currentState = InmigrantState.walking;
-        proposedState = InmigrantState.idle;
+        currentState = PersonState.walking;
+        proposedState = PersonState.idle;
     }
 
     public SheriffModel Model
@@ -29,11 +29,11 @@ public class Sheriff : MonoBehaviour
     public void moveInstantlyToPosition(Vector2 position)
     {
         rigidbody2D.transform.position = position;
-        proposedState = InmigrantState.idle;
+        proposedState = PersonState.idle;
         this.model.setHiddenBehindBarrel(false);
     }
 
-    public InmigrantState CurrentState
+    public PersonState CurrentState
     {
         get { return currentState; }
     }
@@ -41,31 +41,31 @@ public class Sheriff : MonoBehaviour
 
     public void performShootAnimation()
     {
-        proposedState = InmigrantState.shooting;
+        proposedState = PersonState.shooting;
     }
 
     public void performCockAnimation()
     {
-        proposedState = InmigrantState.cocking;
+        proposedState = PersonState.idle_cock;
     }
 
     public void performDieAnimation()
     {
-        proposedState = InmigrantState.dying;
+        proposedState = PersonState.dead;
     }
 
 
     public void crouch()
     {
         this.model.setHiddenBehindBarrel(true);
-        proposedState = InmigrantState.crouching;
+        proposedState = PersonState.crouch;
     }
 
 
     public void standUp()
     {
         this.model.setHiddenBehindBarrel(false);
-        proposedState = InmigrantState.idle;
+        proposedState = PersonState.idle;
     }
 
 
@@ -73,24 +73,24 @@ public class Sheriff : MonoBehaviour
     {
 
         //set animation
-
+        float initialScaleX = transform.localScale.x;
         if (facingLeft)
         {
             Vector3 theScale = transform.localScale;
-            theScale.x = -1;
+            theScale.x = Math.Abs(initialScaleX) * -1;
             transform.localScale = theScale;
         }
         else
         {
             Vector3 theScale = transform.localScale;
-            theScale.x = 1;
+            theScale.x = Math.Abs(initialScaleX);
             transform.localScale = theScale;
         }
-
 
         if (proposedState != currentState)
         {
             currentState = proposedState;
+         //   Debug.Log(model.Role.ToString() + "_" + proposedState.ToString());
             GetComponent<Animator>().Play(model.Role.ToString() + "_" + proposedState.ToString());
         }
 

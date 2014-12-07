@@ -27,13 +27,13 @@ using System.Text;
 
        //---------------------------------------
 
-       public static readonly float ShootSpeed = 1.0f;
+       public static readonly float ShootSpeed = 0.5f;
 
        public static readonly float sheriffCockSpeed = 1.0f;
 
 
-       public static readonly float inmigrantMinCrouchInverval = 3.0f;
-       public static readonly float inmigrantCrouchIntervalRandom = 1.0f;
+       public static readonly float inmigrantMinCrouchInverval = 2.0f;
+       public static readonly float inmigrantCrouchIntervalRandom = 2.0f;
 
 
        public static readonly float delayBetWeenStandAndShoot = 0.5f;

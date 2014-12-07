@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 
-    public enum InmigrantState
-    { idle,walking,crouching,shooting,dying,cocking
+    public enum PersonState
+    { idle,walking,crouch,shooting,dead,idle_cock
     }
 

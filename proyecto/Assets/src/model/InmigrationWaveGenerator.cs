@@ -9,7 +9,18 @@ public class InmigrationWaveGenerator
 
 
 
-        public static Role[] getInmigrants(SheriffModel sheriff, CityStatus cityStatus)
+
+    public static Role[] getCriminals(SheriffModel sheriff, CityStatus cityStatus)
+    {
+        Role[] returnRoles = new Role[GameRules.inmigrantWaveSize];
+        for (int i = 0; i < returnRoles.Length; i++)
+        {
+            returnRoles[i] = Role.Criminal;
+        }
+        return returnRoles;
+    }
+
+    public static Role[] getInmigrants(SheriffModel sheriff, CityStatus cityStatus)
         {
 
             Role[] returnRoles = new Role[GameRules.inmigrantWaveSize];

@@ -29,8 +29,15 @@ public class InmigrantModel : PersonModel
 
     public new void setHiddenBehindBarrel(Boolean hidden)
     {
-        if (hidden) inmigrantState = InmigrantState.crouching;
-        else inmigrantState = InmigrantState.idle;
+        if (hidden)
+        {
+            inmigrantState = InmigrantState.crouching;
+        }
+        else
+        {
+            crouchTime = Time.realtimeSinceStartup + (float)(random.NextDouble() * GameRules.inmigrantCrouchIntervalRandom);
+            inmigrantState = InmigrantState.idle;
+        }
         base.setHiddenBehindBarrel(hidden);
     }
 

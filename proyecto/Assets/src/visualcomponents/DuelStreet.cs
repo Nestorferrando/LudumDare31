@@ -126,13 +126,12 @@ public class DuelStreet : MonoBehaviour
 
         //sheriff operations
 
-        var sheriffShoots = performSheriffActions(result);
+        bool sheriffShoots = performSheriffActions(result);
 
         if (sheriffShoots)
             {
                 tryToKillEnemy();  
             }
-
 
         //enemy operations
         if (getAliveEnemies() == 0)
@@ -146,16 +145,44 @@ public class DuelStreet : MonoBehaviour
         {
             if (inmigrants[i].Model.Alive && inmigrants[i].Model.canMove())
             {
-             //saaasdasdasd
-                switch(inmigrants[i].Model.InmigrantState)
-
-
-
+                var enemyShoots = performEnemyActions(i);
+                if (enemyShoots && !sheriff.Model.HiddenBehindBarrel && random.NextDouble()<GameRules.enemiesKillSuccessRatio)
+                {
+                    sheriff.Model.Alive = false;
+                    sheriff.performDieAnimation();
+                }
             }
         }
 
 
+        if (!sheriff.Model.Alive)
+        {
+            duelResult = DuelResult.dead;
+            duelEnabled = false;
+            return;  
+        }
+    }
 
+    private bool performEnemyActions(int i)
+    {
+        bool enemyShoots = false;
+
+        switch (inmigrants[i].Model.InmigrantState)
+        {
+            case InmigrantState.crouching:
+                inmigrants[i].standUp();
+                break;
+
+            case InmigrantState.idle:
+                inmigrants[i].Model.tryToShoot();
+                inmigrants[i].performShootAnimation();
+                enemyShoots = true;
+                break;
+            case InmigrantState.shooting:
+                inmigrants[i].crouch();
+                break;
+        }
+        return enemyShoots;
     }
 
     private int getAliveEnemies()

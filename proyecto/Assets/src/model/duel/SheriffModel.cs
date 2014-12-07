@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-    public class SheriffModel
+    public class SheriffModel : PersonModel
     {
-        private Role role;
+        
         private Role antiRole;
         private int bullets;
-        private bool hiddenBehindBarrel;
 
-        public SheriffModel(Role role, Role antiRole)
+
+        public SheriffModel(Role role, Role antiRole) : base(role)
         {
-            this.role = role;
             this.antiRole = antiRole;
-            this.hiddenBehindBarrel = false;
+            this.bullets = GameRules.sheriffBullets;
+            
         }
 
         public Role Role

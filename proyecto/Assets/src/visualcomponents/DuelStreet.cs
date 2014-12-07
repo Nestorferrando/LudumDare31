@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Assets.scripts;
+using Assets.scripts.input;
 using Assets.src.visualcomponents;
 using UnityEngine;
+using Random = System.Random;
 
 
 public  class DuelStreet : MonoBehaviour
 {
 
+
+    private static Random random =new Random();
 
     private readonly Vector2 inmigrant1InitialPosition = new Vector2(11.04f, -2.05f);
     private readonly Vector2 inmigrant2InitialPosition = new Vector2(11.04f, -2.05f);
@@ -32,6 +37,11 @@ public  class DuelStreet : MonoBehaviour
         inmigrants = GetComponentsInChildren<Person>();
         duelEnabled = false;
 
+    }
+
+    public void resetPeriod(SheriffModel model)
+    {
+        sheriff.Model = model;
     }
 
     public void resetWave(List<Role> roles)
@@ -77,6 +87,7 @@ public  class DuelStreet : MonoBehaviour
     public void startDuelMode()
     {
         duelEnabled = true;
+
     }
 
 
@@ -99,9 +110,116 @@ public  class DuelStreet : MonoBehaviour
     private void FixedUpdate()
     {
 
+        if (!duelEnabled) return;
+
+        InputResult result = InputUtils.readInput();
+
+
+        if (sheriff.Model.Bullets == 0)
+        {
+            duelResult = DuelResult.surrender;
+            duelEnabled = false;
+            return;
+        }
+
+
+
+        //sheriff operations
+
+        var sheriffShoots = performSheriffActions(result);
+
+        if (sheriffShoots)
+            {
+                tryToKillEnemy();  
+            }
+
+
+        //enemy operations
+        if (getAliveEnemies() == 0)
+        {
+            duelResult = DuelResult.won;
+            duelEnabled = false;
+            return;
+        }
+
+        for (int i = 0; i < activeInmigrants; i++)
+        {
+            if (inmigrants[i].Model.Alive && inmigrants[i].Model.canMove())
+            {
+                if inmigrants[i].Model.HiddenBehindBarrel
+                {
+                  inmigrants[i].Model.setHiddenBehindBarrel(false);
+                  inmigrants[i].standUp();
+                }
+
+
+            }
+        }
+
+
+
+    }
+
+    private int getAliveEnemies()
+    {
+        int aliveEnemies = 0;
+        for (int i = 0; i < activeInmigrants; i++)
+        {
+            if (inmigrants[i].Model.Alive)
+            {
+                aliveEnemies++;
+            }
+        }
+        return aliveEnemies;
+    }
+
+    private void tryToKillEnemy()
+    {
+        if (random.NextDouble() < GameRules.myKillSuccessRatio)
+        {
+            for (int i = 0; i < activeInmigrants; i++)
+            {
+                if (inmigrants[i].Model.Alive && !inmigrants[i].Model.HiddenBehindBarrel)
+                {
+                    inmigrants[i].Model.Alive = false;
+                    inmigrants[i].performDieAnimation();
+                    return;
+                }  
+            }
+        }
     }
 
 
 
+
+    private bool performSheriffActions(InputResult result)
+    {
+        bool sheriffShoots = false;
+
+        if (sheriff.Model.canMove())
+        {
+            if (result.get(InputValues.STANDUP))
+            {
+                sheriff.standUp();
+            }
+
+            if (result.get(InputValues.CROUCH))
+            {
+                sheriff.crouch();
+            }
+
+            if (result.get(InputValues.COCK) && sheriff.Model.cock())
+            {
+                sheriff.performCockAnimation();
+            }
+
+            if (result.get(InputValues.SHOOT) && sheriff.Model.tryToShoot())
+            {
+                sheriff.performCockAnimation();
+                sheriffShoots = true;
+            }
+        }
+        return sheriffShoots;
+    }
 }
 

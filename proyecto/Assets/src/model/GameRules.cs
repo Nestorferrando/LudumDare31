@@ -21,5 +21,25 @@ using System.Text;
 
        public static readonly int sheriffBullets = 12;
 
+        //---------------------------------------
+       public static readonly float myKillSuccessRatio = 1.0f;
+       public static readonly float enemiesKillSuccessRatio = 0.2f;
+
+       //---------------------------------------
+       public static readonly float sheriffCockSpeed = 1.0f;
+       public static readonly float sheriffShootSpeed = 1.0f;
+
+
+
+       //---------------------------------------
+       public static readonly float inmigrantMinShootInverval = 3.0f;
+       public static readonly float inmigrantShootIntervalRandom = 1.0f;
+
+
+       public static readonly float delayBetWeenStandAndShoot = 0.5f;
+       public static readonly float inmigrantShootSpeed = 1.0f;
+
+
+
     }
 

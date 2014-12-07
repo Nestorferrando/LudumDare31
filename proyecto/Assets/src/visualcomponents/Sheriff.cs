@@ -1,30 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
+using System.Collections;
 
-
-public class Person : MonoBehaviour
+public class Sheriff : MonoBehaviour
 {
 
-
-    protected static readonly float moving_speed = 0.01f;
-
-    protected PersonModel model = new PersonModel(Role.Criminal);
-
-    protected PersonState currentState;
-    protected PersonState proposedState;
+    private SheriffModel model=new SheriffModel(Role.BusinessMan,Role.Criminal);
+  
+    private PersonState currentState;
+    private PersonState proposedState;
     public Boolean facingLeft;
 
 
-    public Person()
+
+    public Sheriff()
     {
         currentState = PersonState.walking;
         proposedState = PersonState.idle;
     }
 
-    public PersonModel Model
+    public SheriffModel Model
     {
         get { return model; }
         set { model = value; }
@@ -38,21 +33,20 @@ public class Person : MonoBehaviour
         this.model.setHiddenBehindBarrel(false);
     }
 
-
-    public void startMoving()
+    public PersonState CurrentState
     {
-        proposedState = PersonState.walking;
-    }
-
-    public void stopMoving()
-    {
-        proposedState = PersonState.idle;
+        get { return currentState; }
     }
 
 
     public void performShootAnimation()
     {
         proposedState = PersonState.shooting;
+    }
+
+    public void performCockAnimation()
+    {
+        proposedState = PersonState.cocking;
     }
 
     public void performDieAnimation()
@@ -74,23 +68,9 @@ public class Person : MonoBehaviour
         proposedState = PersonState.idle; 
     }
 
-    public PersonState CurrentState
-    {
-        get { return currentState; }
-    }
-
 
     private void FixedUpdate()
     {
-        //set position
-        if (currentState == PersonState.walking)
-        {
-            rigidbody2D.velocity = new Vector2(-moving_speed, 0);
-        }
-        else
-        {
-           rigidbody2D.velocity = new Vector2(0, 0); 
-        }
 
         //set animation
 
@@ -118,8 +98,13 @@ public class Person : MonoBehaviour
 
 
 
-
-
-    }
-
-
+    // Use this for initialization
+	void Start () {
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
+	
+	}
+}

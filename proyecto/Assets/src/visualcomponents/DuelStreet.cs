@@ -147,6 +147,8 @@ public class DuelStreet : MonoBehaviour
             if (inmigrants[i].Model.Alive && inmigrants[i].Model.canMove())
             {
              //saaasdasdasd
+                switch(inmigrants[i].Model.InmigrantState)
+
 
 
             }

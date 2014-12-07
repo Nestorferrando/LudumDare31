@@ -7,16 +7,16 @@ public class Sheriff : MonoBehaviour
 
     private SheriffModel model = new SheriffModel(Role.BusinessMan, Role.Criminal);
 
-    private PersonState currentState;
-    private PersonState proposedState;
+    private InmigrantState currentState;
+    private InmigrantState proposedState;
     public Boolean facingLeft;
 
 
 
     public Sheriff()
     {
-        currentState = PersonState.walking;
-        proposedState = PersonState.idle;
+        currentState = InmigrantState.walking;
+        proposedState = InmigrantState.idle;
     }
 
     public SheriffModel Model
@@ -29,11 +29,11 @@ public class Sheriff : MonoBehaviour
     public void moveInstantlyToPosition(Vector2 position)
     {
         rigidbody2D.transform.position = position;
-        proposedState = PersonState.idle;
+        proposedState = InmigrantState.idle;
         this.model.setHiddenBehindBarrel(false);
     }
 
-    public PersonState CurrentState
+    public InmigrantState CurrentState
     {
         get { return currentState; }
     }
@@ -41,31 +41,31 @@ public class Sheriff : MonoBehaviour
 
     public void performShootAnimation()
     {
-        proposedState = PersonState.shooting;
+        proposedState = InmigrantState.shooting;
     }
 
     public void performCockAnimation()
     {
-        proposedState = PersonState.cocking;
+        proposedState = InmigrantState.cocking;
     }
 
     public void performDieAnimation()
     {
-        proposedState = PersonState.dying;
+        proposedState = InmigrantState.dying;
     }
 
 
     public void crouch()
     {
         this.model.setHiddenBehindBarrel(true);
-        proposedState = PersonState.crouching;
+        proposedState = InmigrantState.crouching;
     }
 
 
     public void standUp()
     {
         this.model.setHiddenBehindBarrel(false);
-        proposedState = PersonState.idle;
+        proposedState = InmigrantState.idle;
     }
 
 

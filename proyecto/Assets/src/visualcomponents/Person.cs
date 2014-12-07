@@ -11,20 +11,20 @@ public class Person : MonoBehaviour
 
     protected static readonly float moving_speed = 0.01f;
 
-    protected PersonModel model = new PersonModel(Role.Criminal);
+    protected InmigrantModel model = new InmigrantModel(Role.Criminal);
 
-    protected PersonState currentState;
-    protected PersonState proposedState;
+    protected InmigrantState currentState;
+    protected InmigrantState proposedState;
     public Boolean facingLeft;
 
 
     public Person()
     {
-        currentState = PersonState.walking;
-        proposedState = PersonState.idle;
+        currentState = InmigrantState.walking;
+        proposedState = InmigrantState.idle;
     }
 
-    public PersonModel Model
+    public InmigrantModel Model
     {
         get { return model; }
         set { model = value; }
@@ -34,47 +34,47 @@ public class Person : MonoBehaviour
     public void moveInstantlyToPosition(Vector2 position)
     {
         rigidbody2D.transform.position = position;
-        proposedState = PersonState.idle;
+        proposedState = InmigrantState.idle;
         this.model.setHiddenBehindBarrel(false);
     }
 
 
     public void startMoving()
     {
-        proposedState = PersonState.walking;
+        proposedState = InmigrantState.walking;
     }
 
     public void stopMoving()
     {
-        proposedState = PersonState.idle;
+        proposedState = InmigrantState.idle;
     }
 
 
     public void performShootAnimation()
     {
-        proposedState = PersonState.shooting;
+        proposedState = InmigrantState.shooting;
     }
 
     public void performDieAnimation()
     {
-        proposedState = PersonState.dying;
+        proposedState = InmigrantState.dying;
     }
 
 
     public void crouch()
     {
         this.model.setHiddenBehindBarrel(true);
-        proposedState = PersonState.crouching;
+        proposedState = InmigrantState.crouching;
     }
 
 
     public void standUp()
     {
         this.model.setHiddenBehindBarrel(false);
-        proposedState = PersonState.idle;
+        proposedState = InmigrantState.idle;
     }
 
-    public PersonState CurrentState
+    public InmigrantState CurrentState
     {
         get { return currentState; }
     }
@@ -83,7 +83,7 @@ public class Person : MonoBehaviour
     private void FixedUpdate()
     {
         //set position
-        if (currentState == PersonState.walking)
+        if (currentState == InmigrantState.walking)
         {
             rigidbody2D.velocity = new Vector2(-moving_speed, 0);
         }

@@ -9,14 +9,13 @@ public class Person : MonoBehaviour
 {
 
 
-    private static readonly float moving_speed = 0.01f;
+    protected static readonly float moving_speed = 0.01f;
 
-    private PersonModel model;
+    protected PersonModel model = new PersonModel(Role.Criminal);
 
-    private PersonState currentState;
-    private PersonState proposedState;
+    protected PersonState currentState;
+    protected PersonState proposedState;
     public Boolean facingLeft;
-
 
 
     public Person()
@@ -73,6 +72,11 @@ public class Person : MonoBehaviour
     {
         this.model.HiddenBehindBarrel = false;
         proposedState = PersonState.idle; 
+    }
+
+    public PersonState CurrentState
+    {
+        get { return currentState; }
     }
 
 

@@ -56,6 +56,7 @@
      <Compile Include="Assets\src\model\PeriodModel.cs" />
      <Compile Include="Assets\src\model\Role.cs" />
      <Compile Include="Assets\src\model\dialog\DialogUtils.cs" />
+     <Compile Include="Assets\src\model\duel\DuelResult.cs" />
      <Compile Include="Assets\src\model\duel\PersonModel.cs" />
      <Compile Include="Assets\src\model\duel\PersonState.cs" />
      <Compile Include="Assets\src\model\duel\SheriffModel.cs" />

@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-    public class SheriffModel 
+    public class SheriffModel : PersonModel 
     {
         
         private Role antiRole;
         private int bullets;
 
 
-        public SheriffModel(Role role, Role antiRole) 
+        public SheriffModel(Role role, Role antiRole) :base(role)
         {
             this.antiRole = antiRole;
             this.bullets = GameRules.sheriffBullets;

@@ -23,6 +23,7 @@ public class SheriffModel : PersonModel
 
     public new void setHiddenBehindBarrel(Boolean hidden)
     {
+        if (this.HiddenBehindBarrel == hidden) return;
         if (hidden) this.cocked = false;
         base.setHiddenBehindBarrel(hidden);
 

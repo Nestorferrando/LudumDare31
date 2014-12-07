@@ -238,14 +238,16 @@ public class DuelStreet : MonoBehaviour
 
         if (sheriff.Model.canMove())
         {
-            if (result.get(InputValues.STANDUP))
-            {
-                sheriff.standUp();
-            }
+
 
             if (result.get(InputValues.CROUCH))
             {
                 sheriff.crouch();
+            }
+            else
+            {
+
+                sheriff.standUp();
             }
 
             if (result.get(InputValues.COCK) && sheriff.Model.cock())
@@ -255,7 +257,7 @@ public class DuelStreet : MonoBehaviour
 
             if (result.get(InputValues.SHOOT) && sheriff.Model.tryToShoot())
             {
-                sheriff.performCockAnimation();
+                sheriff.performShootAnimation();
                 sheriffShoots = true;
             }
         }

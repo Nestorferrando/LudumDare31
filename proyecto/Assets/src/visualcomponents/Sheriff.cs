@@ -64,6 +64,7 @@ public class Sheriff : MonoBehaviour
 
     public void standUp()
     {
+        if (!this.model.HiddenBehindBarrel) return;
         this.model.setHiddenBehindBarrel(false);
         proposedState = PersonState.idle;
     }

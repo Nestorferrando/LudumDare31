@@ -45,7 +45,7 @@ public class InmigrantModel : PersonModel
 
     public void startDuel()
     {
-        crouchTime = Time.realtimeSinceStartup + GameRules.inmigrantMinCrouchInverval+ (float)(random.NextDouble() * GameRules.inmigrantCrouchIntervalRandom);
+        crouchTime = Time.realtimeSinceStartup +  (float)(random.NextDouble() * GameRules.inmigrantCrouchIntervalRandom);
         _hiddenBehindBarrel = true;
         state = PersonState.crouch;
     }

@@ -95,7 +95,7 @@ public class UIDialog : MonoBehaviour
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void LateUpdate () {
 	    if (Time.fixedTime > startTime + delay || duel)
 	    {
 	        fadeToAlpha();

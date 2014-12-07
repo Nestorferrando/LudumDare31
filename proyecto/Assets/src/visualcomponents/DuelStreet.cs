@@ -32,6 +32,9 @@ public class DuelStreet : MonoBehaviour
 
     private FrontBarrel frontBarrel;
 
+    private Boolean inmigrantsFade;
+    private float fadeTime;
+
 
 
     // Use this for initialization
@@ -65,6 +68,27 @@ public class DuelStreet : MonoBehaviour
 
     }
 
+    public void startInmigrantsFade()
+    {
+        this.inmigrantsFade = true;
+        this.fadeTime = Time.realtimeSinceStartup;
+    }
+
+    public void stopInmigrantsFade()
+    {
+        this.inmigrantsFade = false;
+        for (int i = 0; i < activeInmigrants; i++)
+        {
+            SpriteRenderer renderer = inmigrants[i].GetComponent<SpriteRenderer>();
+            renderer.color = new Color(1, 1, 1, 1);
+        }
+    }
+
+    public Boolean inmigrantsAlreadyFaded()
+    {
+        return (inmigrants[0].GetComponent<SpriteRenderer>().color.a <= 0);
+    }
+
     public void updateSheriffModel(SheriffModel model)
     {
         sheriff.Model = model;
@@ -73,6 +97,11 @@ public class DuelStreet : MonoBehaviour
     public SheriffModel getSheriffModel()
     {
         return sheriff.Model;
+    }
+
+    public InmigrantModel GetInmigrantModel(int position)
+    {
+        return inmigrants[position].Model;
     }
 
 
@@ -98,6 +127,8 @@ public class DuelStreet : MonoBehaviour
     {
         duelEnabled = true;
 
+        sheriff.Model.cock();
+        sheriff.performCockAnimation();
         for (int i = 0; i < activeInmigrants; i++)
         {
             inmigrants[i].crouch();
@@ -124,6 +155,11 @@ public class DuelStreet : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (inmigrantsFade)
+        {
+            applyFade();
+        }
+
 
         if (!duelEnabled) return;
 
@@ -177,6 +213,20 @@ public class DuelStreet : MonoBehaviour
             return;  
         }
     }
+
+    private void applyFade()
+    {
+        float alpha = 2.5f - (Time.realtimeSinceStartup - fadeTime)*2;
+        if (alpha<0)   alpha = 0;
+        if (alpha > 1) alpha = 1;
+
+                for (int i = 0; i < activeInmigrants; i++)
+        {
+            SpriteRenderer renderer = inmigrants[i].GetComponent<SpriteRenderer>();
+            renderer.color = new Color(1, 1, 1, alpha);
+        }
+    }
+
 
     private bool performEnemyActions(int i)
     {

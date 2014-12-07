@@ -6,7 +6,17 @@ using System.Text;
 
     public enum GameState
     {
-       inmigrantsEntering, duel, inmigrantsLeave, fadeIn, fadeOut, gameFinish
+       inmigrantsEntering,
+        preDuelSpeech, 
+        duel,
+        allInmigrantDead, 
+        inmigrantsLeave,
+        FadeOutWavesCompleted,
+        fadeInWavesCompleted,
+        fadeOutDeadSheriff, 
+        fadeInDeadSheriff,
+        fadeOutGameFinished,
+        fadeInGameFinished
 
     }
 

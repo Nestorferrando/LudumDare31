@@ -19,7 +19,7 @@ using System.Text;
         //---------------------------------------
        public static readonly int wavesPerPeriod = 5;
 
-       public static readonly int sheriffBullets = 12;
+       public static readonly int sheriffBullets = 1;
 
         //---------------------------------------
        public static readonly float myKillSuccessRatio = 1.0f;

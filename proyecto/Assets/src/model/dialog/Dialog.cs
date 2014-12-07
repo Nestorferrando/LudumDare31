@@ -63,6 +63,15 @@ public class Dialog
         "Do you think I am stupid? I'm not letting you in!"
     };
 
+    private static string[] sheriffSurrender =
+    {
+        "I surrender!",
+        "I have no more bullets! please don't kill me!",
+        "I'm unarmed, have mercy!",
+        "Don't Shoot, I'm Unarmed!",
+        "Please, don't shoot!",
+    };
+
     private static Dictionary<Role, string[]> dialogues = new Dictionary<Role, string[]>();
     private static Random  randomValue = new Random();
 
@@ -98,6 +107,12 @@ public class Dialog
     {
         int i = randomValue.Next(0, sheriff.Length);
         return sheriff[i];
+    }
+
+    public static string getSheriffSurrenderDialog()
+    {
+        int i = randomValue.Next(0, sheriffSurrender.Length);
+        return sheriffSurrender[i];
     }
  
 

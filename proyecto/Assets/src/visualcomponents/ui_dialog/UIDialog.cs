@@ -21,16 +21,18 @@ public class UIDialog : MonoBehaviour
     private Role role;
 
     private bool sheriff;
+    private bool sheriffSurrender;
     public  bool sheriffDied = false;
     
 
-    public UIDialog init(float delay, Font font, int fontSize, float fadeSpeed, bool sheriff)
+    public UIDialog init(float delay, Font font, int fontSize, float fadeSpeed, bool sheriff, bool sheriffSurrender)
     {
         this.delay = delay;
         this.font = font;
         this.fontSize = fontSize;
         this.fadeSpeed = fadeSpeed;
         this.sheriff = sheriff;
+        this.sheriffSurrender = sheriffSurrender;
 
         return this;
     }
@@ -55,6 +57,12 @@ public class UIDialog : MonoBehaviour
 	    dialog.fontSize = fontSize;
 	    dialog.alignment = TextAnchor.MiddleCenter;
 
+        if (sheriffSurrender)
+        {
+            dialog.text = Dialog.getSheriffSurrenderDialog();
+
+        }
+
 	    if (!sheriffDied)
 	    {
 	        if (!sheriff)
@@ -63,7 +71,15 @@ public class UIDialog : MonoBehaviour
 	        }
 	        else
 	        {
-	            dialog.text = Dialog.getSheriffDialog();
+	            if (sheriffSurrender)
+	            {
+	                dialog.text = Dialog.getSheriffSurrenderDialog();
+                    
+	            }
+	            else
+	            {
+	                dialog.text = Dialog.getSheriffDialog();
+	            }
 	        }
 	    }
 	    else

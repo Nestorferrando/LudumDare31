@@ -16,7 +16,13 @@ namespace Assets.scripts.input
             var result = new InputResult();
 
 
-            result.set(InputValues.SELECT, Input.GetKeyDown("space"));
+            //result.set(InputValues.COCK,  Input.GetKeyDown("space"));
+
+            getInputPulse("w", InputValues.STANDUP, result);
+            getInputPulse("s", InputValues.CROUCH, result);
+            getInputPulse("d", InputValues.SHOOT, result);
+            getInputPulse("a", InputValues.COCK, result);
+
 
             return result;
         }

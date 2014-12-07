@@ -5,5 +5,5 @@ using System.Text;
 
 namespace Assets.scripts
 {
-    enum InputValues{SELECT}
+    enum InputValues{SHOOT,COCK,STANDUP,CROUCH}
 }

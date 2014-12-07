@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DialogUtils : MonoBehaviour {
+public class ManageUIDialog : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

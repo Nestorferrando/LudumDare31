@@ -12,7 +12,7 @@ public class CityModel
     {
         population=new Dictionary<Role, int>();
         
-        population.Add(Role.BusinessMan,70);
+        population.Add(Role.BusinessMan,50);
         population.Add(Role.Criminal, 50);
         population.Add(Role.Indian, 50);
         population.Add(Role.Miner, 50); 

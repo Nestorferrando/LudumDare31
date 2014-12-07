@@ -39,10 +39,10 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>D:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>D:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -58,8 +58,8 @@
      <Compile Include="Assets\src\model\dialog\Dialog.cs" />
      <Compile Include="Assets\src\model\duel\DuelResult.cs" />
      <Compile Include="Assets\src\model\duel\InmigrantModel.cs" />
+     <Compile Include="Assets\src\model\duel\InmigrantState.cs" />
      <Compile Include="Assets\src\model\duel\PersonModel.cs" />
-     <Compile Include="Assets\src\model\duel\PersonState.cs" />
      <Compile Include="Assets\src\model\duel\SheriffModel.cs" />
      <Compile Include="Assets\src\simulation\SimulationScript.cs" />
      <Compile Include="Assets\src\visualcomponents\Building.cs" />
@@ -76,7 +76,7 @@
      <Compile Include="Assets\src\visualcomponents\ui_dialog\ManageUIDialogs.cs" />
      <Compile Include="Assets\src\visualcomponents\ui_dialog\UIDialog.cs" />
  <Reference Include="UnityEngine.UI">
- <HintPath>D:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

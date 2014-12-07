@@ -33,7 +33,7 @@ public class SheriffModel : PersonModel
         get { return antiRole; }
     }
 
-    public new Boolean tryToShoot()
+    public Boolean tryToShoot()
     {
         if (bullets <= 0 || !cocked) return false;
         cocked = false;

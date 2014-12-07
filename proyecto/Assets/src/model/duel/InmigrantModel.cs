@@ -8,7 +8,7 @@ using Random = System.Random;
 public class InmigrantModel : PersonModel
 {
 
-    private static Random random = new Random();
+    
 
     protected float crouchTime;
 
@@ -55,7 +55,7 @@ public class InmigrantModel : PersonModel
     }
 
 
-    public bool canMove()
+    public new bool canMove()
     {
         return (base.canMove() &&  Time.realtimeSinceStartup - crouchTime > GameRules.inmigrantMinCrouchInverval);
     }

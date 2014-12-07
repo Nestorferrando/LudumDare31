@@ -66,8 +66,8 @@
     <Compile Include="Assets\src\model\dialog\Dialog.cs" />
     <Compile Include="Assets\src\model\duel\DuelResult.cs" />
     <Compile Include="Assets\src\model\duel\InmigrantModel.cs" />
+    <Compile Include="Assets\src\model\duel\InmigrantState.cs" />
     <Compile Include="Assets\src\model\duel\PersonModel.cs" />
-    <Compile Include="Assets\src\model\duel\PersonState.cs" />
     <Compile Include="Assets\src\model\duel\SheriffModel.cs" />
     <Compile Include="Assets\src\simulation\SimulationScript.cs" />
     <Compile Include="Assets\src\visualcomponents\Building.cs" />

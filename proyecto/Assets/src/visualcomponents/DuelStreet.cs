@@ -49,7 +49,7 @@ public class DuelStreet : MonoBehaviour
 
         for (int i = 0; i < roles.Count; i++)
         {
-            inmigrants[i].Model = new PersonModel(roles.ElementAt(i));
+            inmigrants[i].Model = new InmigrantModel(roles.ElementAt(i));
         }
 
         inmigrants[0].moveInstantlyToPosition(inmigrant1InitialPosition);

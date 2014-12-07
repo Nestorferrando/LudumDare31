@@ -58,11 +58,12 @@
   <ItemGroup>
     <Compile Include="Assets\src\model\CityModel.cs" />
     <Compile Include="Assets\src\model\CityStatus.cs" />
+    <Compile Include="Assets\src\model\duel\InmigrantModel.cs" />
     <Compile Include="Assets\src\model\GameRules.cs" />
     <Compile Include="Assets\src\model\InmigrationWaveGenerator.cs" />
     <Compile Include="Assets\src\model\PeriodModel.cs" />
     <Compile Include="Assets\src\model\Role.cs" />
-    <Compile Include="Assets\src\model\SheriffModel.cs" />
+    <Compile Include="Assets\src\model\duel\SheriffModel.cs" />
     <Compile Include="Assets\src\simulation\SimulationScript.cs" />
     <Compile Include="Assets\src\visualcomponents\buildingUtils\RoleUnbalance.cs" />
     <Compile Include="Assets\src\visualcomponents\buildingUtils\BuildingRequest.cs" />

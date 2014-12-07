@@ -73,6 +73,7 @@
     <Compile Include="Assets\src\visualcomponents\DuelStreet.cs" />
     <Compile Include="Assets\src\visualcomponents\Person.cs" />
     <Compile Include="Assets\src\visualcomponents\RoleBuilding.cs" />
+    <Compile Include="Assets\src\visualcomponents\Sheriff.cs" />
     <Compile Include="Assets\src\visualcomponents\buildingUtils\BuildingGiver.cs" />
     <Compile Include="Assets\src\visualcomponents\buildingUtils\BuildingRequest.cs" />
     <Compile Include="Assets\src\visualcomponents\buildingUtils\BuildingUtils.cs" />

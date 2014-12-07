@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 
-    enum PersonState
+    public enum PersonState
     { idle,walking,crouching,shooting,cocking,dying
     }
 

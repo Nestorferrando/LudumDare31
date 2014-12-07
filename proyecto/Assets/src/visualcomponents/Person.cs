@@ -5,7 +5,7 @@ using System.Text;
 using UnityEngine;
 
 
-class Person : MonoBehaviour
+public class Person : MonoBehaviour
 {
 
 

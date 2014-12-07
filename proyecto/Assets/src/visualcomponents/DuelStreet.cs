@@ -9,19 +9,28 @@ public  class DuelStreet : MonoBehaviour
 {
 
 
+
     private bool duelEnabled;
+    private int activeCharacters;
+
+    private Sheriff sheriff;
+    private Person[] inmigrants;
 
 
 
-    public void configureWave(List<Role> roles)
+
+    // Use this for initialization
+    private void Start()
+    {
+        sheriff =  GetComponentsInChildren<Sheriff>()[0];
+        inmigrants = GetComponentsInChildren<Person>();
+    }
+
+    public void resetWave(List<Role> roles)
     {
         
     }
 
-    public void moveWaveToLeft()
-    {
-
-    }
 
     public void moveWave()
     {
@@ -42,6 +51,12 @@ public  class DuelStreet : MonoBehaviour
     {
 
     }
+
+    private void FixedUpdate()
+    {
+
+    }
+
 
 
 }

@@ -39,10 +39,10 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>D:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>D:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -65,12 +65,13 @@
      <Compile Include="Assets\src\visualcomponents\DuelStreet.cs" />
      <Compile Include="Assets\src\visualcomponents\Person.cs" />
      <Compile Include="Assets\src\visualcomponents\RoleBuilding.cs" />
+     <Compile Include="Assets\src\visualcomponents\Sheriff.cs" />
      <Compile Include="Assets\src\visualcomponents\buildingUtils\BuildingGiver.cs" />
      <Compile Include="Assets\src\visualcomponents\buildingUtils\BuildingRequest.cs" />
      <Compile Include="Assets\src\visualcomponents\buildingUtils\BuildingUtils.cs" />
      <Compile Include="Assets\src\visualcomponents\buildingUtils\RoleUnbalance.cs" />
  <Reference Include="UnityEngine.UI">
- <HintPath>D:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -20,7 +20,7 @@ public class InmigrantModel : PersonModel
 
     public Boolean tryToShoot()
     {
-        shootTime = Time.realtimeSinceStartup);
+        shootTime = Time.realtimeSinceStartup;
         return true;
     }
 

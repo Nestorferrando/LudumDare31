@@ -5,8 +5,8 @@ using System.Collections;
 public class Sheriff : MonoBehaviour
 {
 
-    private SheriffModel model=new SheriffModel(Role.BusinessMan,Role.Criminal);
-  
+    private SheriffModel model = new SheriffModel(Role.BusinessMan, Role.Criminal);
+
     private PersonState currentState;
     private PersonState proposedState;
     public Boolean facingLeft;
@@ -27,7 +27,7 @@ public class Sheriff : MonoBehaviour
 
 
     public void moveInstantlyToPosition(Vector2 position)
-    {  
+    {
         rigidbody2D.transform.position = position;
         proposedState = PersonState.idle;
         this.model.setHiddenBehindBarrel(false);
@@ -58,14 +58,14 @@ public class Sheriff : MonoBehaviour
     public void crouch()
     {
         this.model.setHiddenBehindBarrel(true);
-        proposedState = PersonState.crouching; 
+        proposedState = PersonState.crouching;
     }
 
 
     public void standUp()
     {
         this.model.setHiddenBehindBarrel(false);
-        proposedState = PersonState.idle; 
+        proposedState = PersonState.idle;
     }
 
 
@@ -99,12 +99,14 @@ public class Sheriff : MonoBehaviour
 
 
     // Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 }

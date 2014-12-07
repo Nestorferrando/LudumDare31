@@ -9,11 +9,11 @@ using UnityEngine;
 using Random = System.Random;
 
 
-public  class DuelStreet : MonoBehaviour
+public class DuelStreet : MonoBehaviour
 {
 
 
-    private static Random random =new Random();
+    private static Random random = new Random();
 
     private readonly Vector2 inmigrant1InitialPosition = new Vector2(11.04f, -2.05f);
     private readonly Vector2 inmigrant2InitialPosition = new Vector2(11.04f, -2.05f);
@@ -33,7 +33,7 @@ public  class DuelStreet : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-        sheriff =  GetComponentsInChildren<Sheriff>()[0];
+        sheriff = GetComponentsInChildren<Sheriff>()[0];
         inmigrants = GetComponentsInChildren<Person>();
         duelEnabled = false;
 
@@ -49,7 +49,7 @@ public  class DuelStreet : MonoBehaviour
 
         for (int i = 0; i < roles.Count; i++)
         {
-            inmigrants[i].Model=new PersonModel(roles.ElementAt(i));
+            inmigrants[i].Model = new PersonModel(roles.ElementAt(i));
         }
 
         inmigrants[0].moveInstantlyToPosition(inmigrant1InitialPosition);
@@ -146,11 +146,7 @@ public  class DuelStreet : MonoBehaviour
         {
             if (inmigrants[i].Model.Alive && inmigrants[i].Model.canMove())
             {
-                if inmigrants[i].Model.HiddenBehindBarrel
-                {
-                  inmigrants[i].Model.setHiddenBehindBarrel(false);
-                  inmigrants[i].standUp();
-                }
+             //saaasdasdasd
 
 
             }
@@ -184,7 +180,7 @@ public  class DuelStreet : MonoBehaviour
                     inmigrants[i].Model.Alive = false;
                     inmigrants[i].performDieAnimation();
                     return;
-                }  
+                }
             }
         }
     }

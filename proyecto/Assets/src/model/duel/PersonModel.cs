@@ -10,12 +10,12 @@ public class PersonModel
 
     protected static Random random = new Random();
 
-        protected Role role;
-        protected bool _hiddenBehindBarrel;
-        protected bool _Alive;
+    protected Role role;
+    protected bool _hiddenBehindBarrel;
+    protected bool _Alive;
 
-        protected float shootTime;
-        protected float standUpTime;
+    protected float shootTime;
+    protected float standUpTime;
 
     public PersonModel(Role role)
     {
@@ -24,9 +24,9 @@ public class PersonModel
     }
 
     public Role Role
-        {
-            get { return role; }
-        }
+    {
+        get { return role; }
+    }
 
 
     public bool HiddenBehindBarrel

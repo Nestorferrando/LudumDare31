@@ -32,7 +32,7 @@ public class Person : MonoBehaviour
 
 
     public void moveInstantlyToPosition(Vector2 position)
-    {  
+    {
         rigidbody2D.transform.position = position;
         proposedState = PersonState.idle;
         this.model.setHiddenBehindBarrel(false);
@@ -64,14 +64,14 @@ public class Person : MonoBehaviour
     public void crouch()
     {
         this.model.setHiddenBehindBarrel(true);
-        proposedState = PersonState.crouching; 
+        proposedState = PersonState.crouching;
     }
 
 
     public void standUp()
     {
         this.model.setHiddenBehindBarrel(false);
-        proposedState = PersonState.idle; 
+        proposedState = PersonState.idle;
     }
 
     public PersonState CurrentState
@@ -89,7 +89,7 @@ public class Person : MonoBehaviour
         }
         else
         {
-           rigidbody2D.velocity = new Vector2(0, 0); 
+            rigidbody2D.velocity = new Vector2(0, 0);
         }
 
         //set animation
@@ -120,6 +120,5 @@ public class Person : MonoBehaviour
 
 
 
-    }
-
+}
 

@@ -63,7 +63,7 @@
     <Compile Include="Assets\src\model\InmigrationWaveGenerator.cs" />
     <Compile Include="Assets\src\model\PeriodModel.cs" />
     <Compile Include="Assets\src\model\Role.cs" />
-    <Compile Include="Assets\src\model\dialog\DialogUtils.cs" />
+    <Compile Include="Assets\src\model\dialog\Dialog.cs" />
     <Compile Include="Assets\src\model\duel\DuelResult.cs" />
     <Compile Include="Assets\src\model\duel\PersonModel.cs" />
     <Compile Include="Assets\src\model\duel\PersonState.cs" />
@@ -72,6 +72,7 @@
     <Compile Include="Assets\src\visualcomponents\Building.cs" />
     <Compile Include="Assets\src\visualcomponents\City.cs" />
     <Compile Include="Assets\src\visualcomponents\DuelStreet.cs" />
+    <Compile Include="Assets\src\visualcomponents\Game.cs" />
     <Compile Include="Assets\src\visualcomponents\Person.cs" />
     <Compile Include="Assets\src\visualcomponents\RoleBuilding.cs" />
     <Compile Include="Assets\src\visualcomponents\Sheriff.cs" />
@@ -79,6 +80,8 @@
     <Compile Include="Assets\src\visualcomponents\buildingUtils\BuildingRequest.cs" />
     <Compile Include="Assets\src\visualcomponents\buildingUtils\BuildingUtils.cs" />
     <Compile Include="Assets\src\visualcomponents\buildingUtils\RoleUnbalance.cs" />
+    <Compile Include="Assets\src\visualcomponents\ui_dialog\ManageUIDialogs.cs" />
+    <Compile Include="Assets\src\visualcomponents\ui_dialog\UIDialog.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
 </Project>

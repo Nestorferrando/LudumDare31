@@ -47,6 +47,22 @@ public class Dialog
         "You've no soul, but my tribe has no ladies"
     };
 
+    private static string[] toggleSheriff =
+    {
+        "Now I'm the sheriff! HA!",
+        "He deserved it. Now I am the sheriff!",
+        "Nobody tells me what to do. I think that star will fit me well.",
+        "This star is so shiny it has to be mine!"
+    };
+
+    private static string[] sheriff =
+    {
+        "Stay away from my city, you scum!",
+        "This city is not big enough for people like you",
+        "I am the fastest shooter in here, so don't even try to kill me!",
+        "Do you think I am stupid? I'm not letting you in!"
+    };
+
     private static Dictionary<Role, string[]> dialogues = new Dictionary<Role, string[]>();
     private static Random  randomValue = new Random();
 
@@ -58,7 +74,7 @@ public class Dialog
         dialogues.Add(Role.Miner, miner);
     }
 
-    public static string getDialog(Role r)
+    public static string getWaveDialog(Role r)
     {
         if (dialogues.Count == 0)
         {
@@ -70,6 +86,18 @@ public class Dialog
 
         int i = randomValue.Next(0, value.Length);
         return value[i];
+    }
+
+    public static string getToggleSheriffDialog()
+    {
+        int i = randomValue.Next(0, toggleSheriff.Length);
+        return toggleSheriff[i];
+    }
+
+    public static string getSheriffDialog()
+    {
+        int i = randomValue.Next(0, sheriff.Length);
+        return sheriff[i];
     }
  
 

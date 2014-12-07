@@ -11,6 +11,7 @@ class RoleBuilding : MonoBehaviour
 
         public void setAppeareance(Role role)
         {
+            
             GetComponent<Animator>().Play("factionBuilding"+role.ToString());
         }
 

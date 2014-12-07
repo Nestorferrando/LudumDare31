@@ -58,14 +58,14 @@ public class City : MonoBehaviour
             neutralBuildingComponents[i].setAppeareance(neutralBuildings[i]);
         }
 
-        /*
+        
         RoleBuilding[] roleBuildingComponents = GetComponentsInChildren<RoleBuilding>();
 
         for (int i = 0; i < roleBuildingComponents.Length; i++)
         {
             roleBuildingComponents[i].setAppeareance(roleBuildings[i]);
         }
-        */
+        
 
     }
 

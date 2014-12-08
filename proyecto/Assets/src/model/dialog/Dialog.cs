@@ -81,6 +81,8 @@ public class Dialog
     {
         "Great! Wellcome to Ragtown",
         "We totally need more people like you in our town",
+        "Wellcome to your new home",
+        "The more the merrier",
         "Come in!",
         "Wow, you look awesome, please join us",
         "Please, please, wellcome",

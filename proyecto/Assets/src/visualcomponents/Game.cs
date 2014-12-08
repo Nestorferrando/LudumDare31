@@ -13,6 +13,7 @@ public class Game : MonoBehaviour
     private DuelStreet duelStreet;
     private PeriodModel periodModel;
     private SplashScreen splashScreen;
+    private Tutorial tutorial;
     private GameState _gameState;
 
     private BlackCurtain curtain;
@@ -22,6 +23,8 @@ public class Game : MonoBehaviour
 
     private int waveCounter = 0;
     private int deadSheriffs = 0;
+
+    private bool tutorialDone = false;
 
 
 
@@ -33,6 +36,8 @@ public class Game : MonoBehaviour
       dialogManager = GetComponentsInChildren<ManageUIDialogs>()[0];
       curtain = GetComponentsInChildren<BlackCurtain>()[0];
       splashScreen = GetComponentsInChildren<SplashScreen>()[0];
+      GameObject tutorialObj = GameObject.Find("Tutorial");
+      tutorial = tutorialObj.GetComponent<Tutorial>();
       periodModel=new PeriodModel();
 	    _gameState = GameState.splashScreen;
 	}
@@ -91,8 +96,16 @@ public class Game : MonoBehaviour
         case GameState.fadeOutGameFinished:
 	            performFadeOutGameFinished();
 	            break;
+        case GameState.tutorialState:
 
-
+	            if (tutorial.TutorialFinished)
+	            {
+                    tutorial.destroy();
+	                duelStreet.startDuelMode();
+	                dialogManager.startDuelDialog();
+	                _gameState = GameState.duel;
+	            }
+	            break;
 	    }
 
 	}
@@ -203,6 +216,12 @@ public class Game : MonoBehaviour
 
             if (result.get(InputValues.COCK))
             {
+                if (!this.tutorialDone)
+                {
+                    this.tutorialDone = true;
+                    _gameState = GameState.tutorialState;
+                    tutorial.runTutorial();
+                }
                 _gameState = GameState.duel;
                 duelStreet.startDuelMode();
                 dialogManager.startDuelDialog();
@@ -220,6 +239,7 @@ public class Game : MonoBehaviour
 
     private void performDuel()
     {
+
         if (!duelStreet.isDuelModeActive())
         {
             switch (duelStreet.getDuelResult())
@@ -243,6 +263,7 @@ public class Game : MonoBehaviour
         }
     }
 
+
     private void performInmigrantsEntering()
     {
         if (duelStreet.enemiesCloseFromFrontBarrels())
@@ -263,6 +284,7 @@ public class Game : MonoBehaviour
             }
             else
             {
+                dialogManager.setSheriffIsDeadDialog();
                 duelStreet.startInmigrantsFade();
                 _gameState = GameState.inmigrantsLeave;
             }

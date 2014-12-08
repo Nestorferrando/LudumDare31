@@ -49,15 +49,16 @@ public class Dialog
 
     private static string[] toggleSheriff =
     {
-        "Now I'm the sheriff! HA!",
-        "He deserved it. Now I am the sheriff!",
-        "Nobody tells me what to do. I think that star will fit me well.",
-        "This star is so shiny it has to be mine!"
+        "Meh, I think this town needs another sheriff",
+        "He deserved it!",
+        "Nobody tells me what to do. It'll take some time till another one replaces his place",
+        "Nice, another sheriff down!",
+        "Great, now this city will be a chaos for some time"
     };
 
-    private static string[] sheriff =
+    private static string[] sheriffRejects =
     {
-        "We don't need people like you arround!",
+        "We don't need people like you around here!",
         "We already have too many of your type here!",
         "Leave! this town will not be your home!",
         "This town has already too many people like you!. Go away!",
@@ -72,21 +73,31 @@ public class Dialog
         "I surrender!",
         "I have no more bullets! please don't kill me!",
         "I'm unarmed, have mercy!",
-        "Don't Shoot, I'm Unarmed!",
+        "Don't Shoot, I'm unarmed!",
         "Please, don't shoot!",
         "Like if I had a choice"
     };
 
     private static string[] sheriffAccepts =
     {
-        "Great! Wellcome to Ragtown",
+        "Great! Welcome to Ragtown",
         "We totally need more people like you in our town",
         "Wellcome to your new home",
         "The more the merrier",
         "Come in!",
         "Wow, you look awesome, please join us",
-        "Please, please, wellcome",
+        "Please, please, welcome",
         "I can't say no to your sincere request"
+    };
+
+    private static string[] sheriffIsDead =
+    {
+        "Hey look at that, it's a dead sheriff! This is indeed a nice place to live",
+        "Haha, that sheriff is dead, let's go inside this town!",
+        "This dead sheriff is a nice claim to live in here!",
+        "The sheriff is dead! This town looks safe enough for me",
+        "A dead sheriff... I think I'll have to write my will soon",
+        "It is nice to see there's a plenty amount of fresh flesh in this town"
     };
 
 
@@ -123,8 +134,8 @@ public class Dialog
 
     public static string getSheriffRejectDialog()
     {
-        int i = randomValue.Next(0, sheriff.Length);
-        return sheriff[i].ToUpper();
+        int i = randomValue.Next(0, sheriffRejects.Length);
+        return sheriffRejects[i].ToUpper();
     }
 
     public static string getSheriffSurrenderDialog()
@@ -137,6 +148,12 @@ public class Dialog
     {
         int i = randomValue.Next(0, sheriffAccepts.Length);
         return sheriffAccepts[i].ToUpper();
+    }
+
+    public static string getSheriffIsDeadDialog()
+    {
+        int i = randomValue.Next(0, sheriffIsDead.Length);
+        return sheriffIsDead[i].ToUpper();
     }
  
 

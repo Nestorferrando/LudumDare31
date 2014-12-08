@@ -6,6 +6,6 @@ using System.Text;
 
     public enum DialogType
     {
-        sheriffAccept,sheriffReject,sheriffSurrender,waveEnters,waveWinDuel
+        sheriffAccept,sheriffReject,sheriffSurrender,waveEnters,waveWinDuel, sheriffIsDead
     }
 

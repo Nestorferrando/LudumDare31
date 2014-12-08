@@ -63,6 +63,13 @@ public class ManageUIDialogs : MonoBehaviour
         */
     }
 
+    public void setSheriffIsDeadDialog()
+    {
+        child = GameObject.Find("PanelWave");
+        child.AddComponent<UIDialog>();
+        dialog = child.GetComponent<UIDialog>();
+        dialog.init(delay, font, fontSize, fadeSpeed, DialogType.sheriffIsDead, Role.Neutral);
+    }
 
     public void startDuelDialog()
     {

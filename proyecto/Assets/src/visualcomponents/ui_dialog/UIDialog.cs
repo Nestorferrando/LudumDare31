@@ -56,6 +56,7 @@ public class UIDialog : MonoBehaviour
 	    if (dialogType == DialogType.sheriffAccept) dialog.text = Dialog.getSheriffAcceptsDialog();
 	    if (dialogType == DialogType.sheriffReject) dialog.text = Dialog.getSheriffRejectDialog();
         if (dialogType == DialogType.waveWinDuel) dialog.text = Dialog.getSheriffDiedDialog();
+	    if (dialogType == DialogType.sheriffIsDead) dialog.text = Dialog.getSheriffIsDeadDialog();
 
 	    startTime = Time.fixedTime;
 
@@ -69,8 +70,11 @@ public class UIDialog : MonoBehaviour
 	    {
             
 	        fadeToAlpha();
+            DestroyObject(child.GetComponent<Text>());
+            /*
             DestroyObject(GameObject.Find("SheriffText").GetComponent<Text>());
             DestroyObject(GameObject.Find("WaveText").GetComponent<Text>());
+             */
             DestroyObject(this);
 	    }
 

@@ -15,6 +15,9 @@ namespace Assets.src.visualcomponents.ui_dialog
         private void Start()
         {
             img = GetComponent<Image>();
+            img.enabled = true;
+            Text childText = GameObject.Find("continue").GetComponent<Text>();
+            childText.enabled = false;
 
         }
 

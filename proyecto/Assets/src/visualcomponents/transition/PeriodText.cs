@@ -5,14 +5,14 @@ using UnityEngine.UI;
 
 public class PeriodText : MonoBehaviour {
 
-    private static Text text;
+    private Text text;
     
     void Awake()
     {
         text = GetComponent<Text>();
     }
 
-    public static void setYears(string years)
+    public void setYears(string years)
     {
         text.text = "PERIOD\n" + years;
     }

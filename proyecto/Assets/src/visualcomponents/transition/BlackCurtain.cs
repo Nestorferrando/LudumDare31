@@ -8,56 +8,76 @@ public class BlackCurtain : MonoBehaviour
 {
     public float fadeSpeed = 1f;
     private Image img;
-    private Text textPeriod;
-    private Text textStatistics;
+    private PeriodText textPeriod;
+    private StatisticsText textStatistics;
     private GameObject child;
 
-    private float timeIni;
+    private float fadeStart;
 	// Use this for initialization
 
 	void Start () {
         img = GetComponent<Image>();
-	    textPeriod = GameObject.Find("Statistics").GetComponent<Text>();
-	    textStatistics = GameObject.Find("Period").GetComponent<Text>();
-        
-        /*
-	    StatisticsText.setStatistics("Your city has burnt", 10, 4, 9, 1, 100, "SUICIDAL", "4/5");
+        textPeriod = GameObject.Find("Period").GetComponent<PeriodText>();
+        textStatistics = GameObject.Find("Statistics").GetComponent<StatisticsText>();
 
-        fadeToBlack(textStatistics);
-
-	    showStatistics();
-        
-
-	    PeriodText.setYears("1980-1990");
-        */
+       // this.fadeToBlackPeriod("asdasdasd");
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-        /*
-	    if (Time.fixedTime > timeIni + 2)
-	    {
-	        fadeToAlpha(textStatistics);
-	        hideStatistics();
-	    }
-         * */
+
 	}
 
-    void fadeToBlack(Text text)
+
+    public bool fadeFinished()
     {
+        return Time.realtimeSinceStartup - fadeStart > fadeSpeed;
+    }
+    public void fadeToBlackPeriod(String text)
+    {
+        textPeriod.setYears(text);
+        showPeriod();
+        this.fadeToBlack();
+    }
+
+    public void fadeToAlphaPeriod()
+    {
+        hidePeriod();
+        this.fadeToAlpha();
+    }
+
+
+    public void fadeToBlackStatistics(String text)
+    {
+        textPeriod.setYears(text);
+        showStatistics();
+        this.fadeToBlack();
+    }
+
+    public void fadeToAlphaStatistics()
+    {
+        hideStatistics();
+        this.fadeToAlpha();
+    }
+
+
+    private void fadeToBlack()
+    {
+        fadeStart = Time.realtimeSinceStartup;
         img.CrossFadeAlpha(255f, fadeSpeed, false); // sec        
         //text.CrossFadeAlpha(255f, fadeSpeed, false);
     }
 
-    void fadeToAlpha(Text text)
+    private void fadeToAlpha()
     {
+        fadeStart = Time.realtimeSinceStartup;
         img.CrossFadeAlpha(0f, fadeSpeed, false); // sec
         //text.CrossFadeAlpha(0f, fadeSpeed, false);
 
     }
 
-    void showPeriod()
+    private void showPeriod()
     {
         child = GameObject.Find("Period");
         Text childText = child.GetComponent<Text>();
@@ -65,14 +85,14 @@ public class BlackCurtain : MonoBehaviour
         Debug.Log("hi");
     }
 
-    void hidePeriod()
+    private  void hidePeriod()
     {
         child = GameObject.Find("Period");
         Text childText = child.GetComponent<Text>();
         childText.enabled = false;
     }
 
-    void showStatistics()
+    private void showStatistics()
     {
         child = GameObject.Find("Statistics");
         Text childText = child.GetComponent<Text>();
@@ -80,7 +100,7 @@ public class BlackCurtain : MonoBehaviour
         Debug.Log("hi");
     }
 
-    void hideStatistics()
+    private void hideStatistics()
     {
         child = GameObject.Find("Statistics");
         Text childText = child.GetComponent<Text>();

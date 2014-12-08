@@ -18,6 +18,11 @@ using System.Text;
             return GameRules.startingYear + _currentPeriod * GameRules.yearsPerPeriod;
         }
 
+        public void reset()
+        {
+            _currentPeriod = 0;
+        }
+
         public int currentPeriod()
         {
             return _currentPeriod;

@@ -13,6 +13,8 @@ public class Game : MonoBehaviour
     private PeriodModel periodModel;
     private GameState _gameState;
 
+    private BlackCurtain curtain;
+
     private float speechTime;
     private ManageUIDialogs dialogManager;
 
@@ -26,6 +28,7 @@ public class Game : MonoBehaviour
       city =  GetComponentsInChildren<City>()[0];
       duelStreet = GetComponentsInChildren<DuelStreet>()[0];
       dialogManager = GetComponentsInChildren<ManageUIDialogs>()[0];
+      curtain = GetComponentsInChildren<BlackCurtain>()[0]; 
       periodModel=new PeriodModel();
 	  initialize();
 
@@ -39,7 +42,7 @@ public class Game : MonoBehaviour
 
       duelStreet.moveWave();
       _gameState = GameState.inmigrantsEntering;
-
+      periodModel.reset();
     }
 	
 	// Update is called once per frame
@@ -70,9 +73,22 @@ public class Game : MonoBehaviour
 	            break;
 
         case GameState.FadeOutWavesCompleted:
+	            if (curtain.fadeFinished())
+	            {
+                    periodModel.increasePeriod();
+	                waveCounter = 0;
+                    duelStreet.resetWave(InmigrationWaveGenerator.getCriminals(duelStreet.getSheriffModel(), city.CityModel.getCityUnbalance()));
+	                _gameState = GameState.fadeInWavesCompleted;
+                    curtain.fadeToAlphaPeriod();
+	            }
 	            break;
         case GameState.fadeInWavesCompleted:
-                break;
+                if (curtain.fadeFinished())
+                {
+                    duelStreet.moveWave();
+                    _gameState = GameState.inmigrantsEntering;
+                }
+	            break;
 
 	    }
 
@@ -143,7 +159,7 @@ public class Game : MonoBehaviour
     {
         if (!duelStreet.isDuelModeActive())
         {
-            waveCounter++;
+            
             
             switch (duelStreet.getDuelResult())
             {
@@ -169,6 +185,7 @@ public class Game : MonoBehaviour
     {
         if (duelStreet.enemiesCloseFromFrontBarrels())
         {
+            waveCounter++;
             duelStreet.stopWave();
             _gameState = GameState.preDuelSpeech;
             speechTime = Time.realtimeSinceStartup;
@@ -179,8 +196,9 @@ public class Game : MonoBehaviour
 
     private void nextWaveOrNextPeriod()
     {
-        if (waveCounter == GameRules.wavesPerPeriod)
+        if (waveCounter >= GameRules.wavesPerPeriod)
         {
+            curtain.fadeToBlackPeriod(periodModel.currentYear()+"-"+(periodModel.currentYear()+GameRules.yearsPerPeriod));
             _gameState = GameState.FadeOutWavesCompleted;
         }
         else

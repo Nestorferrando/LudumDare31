@@ -17,7 +17,7 @@ using System.Text;
        public static readonly float antiRoleSpawnProbability = 0.5f;
        public static readonly int inmigrantWaveSize = 3;
         //---------------------------------------
-       public static readonly int wavesPerPeriod = 5;
+       public static readonly int wavesPerPeriod = 1;
 
        public static readonly int sheriffBullets = 1;
 

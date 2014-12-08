@@ -6,7 +6,8 @@ using System.Text;
 
     public enum GameState
     {
-       inmigrantsEntering,
+        splashScreen,
+        inmigrantsEntering,
         preDuelSpeech, 
         duel,
         allInmigrantDead, 

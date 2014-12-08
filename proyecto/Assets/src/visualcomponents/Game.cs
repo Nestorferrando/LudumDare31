@@ -2,6 +2,7 @@
 using Assets.scripts;
 using Assets.scripts.input;
 using Assets.src.visualcomponents;
+using Assets.src.visualcomponents.ui_dialog;
 using UnityEngine;
 using System.Collections;
 
@@ -11,6 +12,7 @@ public class Game : MonoBehaviour
     private City city;
     private DuelStreet duelStreet;
     private PeriodModel periodModel;
+    private SplashScreen splashScreen;
     private GameState _gameState;
 
     private BlackCurtain curtain;
@@ -29,10 +31,10 @@ public class Game : MonoBehaviour
       city =  GetComponentsInChildren<City>()[0];
       duelStreet = GetComponentsInChildren<DuelStreet>()[0];
       dialogManager = GetComponentsInChildren<ManageUIDialogs>()[0];
-      curtain = GetComponentsInChildren<BlackCurtain>()[0]; 
+      curtain = GetComponentsInChildren<BlackCurtain>()[0];
+      splashScreen = GetComponentsInChildren<SplashScreen>()[0];
       periodModel=new PeriodModel();
-	  initialize();
-
+	    _gameState = GameState.splashScreen;
 	}
 
 
@@ -56,6 +58,9 @@ public class Game : MonoBehaviour
         
     switch(_gameState) 
 	    {
+            case GameState.splashScreen:
+	                performSplashScreen();
+	            break;
         case GameState.inmigrantsEntering:
 	            performInmigrantsEntering();
                 break;
@@ -84,21 +89,37 @@ public class Game : MonoBehaviour
                 performFadeInWavesCompleted();
 	            break;
         case GameState.fadeOutGameFinished:
-	            if (curtain.fadeFinished())
-	            {
-	                InputResult result= InputUtils.readInput();
-	                if (result.get(InputValues.SHOOT))
-	                {
-	                    initialize();
-                        curtain.fadeToAlphaStatistics();
-	                }
-	            }
+	            performFadeOutGameFinished();
 	            break;
 
 
 	    }
 
 	}
+
+    private void performFadeOutGameFinished()
+    {
+        if (curtain.fadeFinished())
+        {
+            InputResult result = InputUtils.readInput();
+            if (result.get(InputValues.SHOOT))
+            {
+                initialize();
+                curtain.fadeToAlphaStatistics();
+            }
+        }
+    }
+
+    private void performSplashScreen()
+    {
+        InputResult result = InputUtils.readInput();
+        if (result.get(InputValues.SHOOT))
+        {
+            _gameState = GameState.inmigrantsEntering;
+            splashScreen.remove();
+            initialize();
+        }
+    }
 
     private void performFadeInWavesCompleted()
     {
@@ -193,8 +214,6 @@ public class Game : MonoBehaviour
 
     private void performDuel()
     {
-        float timeIni = Time.fixedTime;
-
         if (!duelStreet.isDuelModeActive())
         {
             switch (duelStreet.getDuelResult())

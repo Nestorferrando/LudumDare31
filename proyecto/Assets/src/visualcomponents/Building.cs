@@ -7,7 +7,7 @@ using UnityEngine;
 
 class Building : MonoBehaviour
     {
-        public int buildingType;
+        public int buildingType=0;
 
 
         public void setAppeareance(Role role)
@@ -15,6 +15,10 @@ class Building : MonoBehaviour
             GetComponent<Animator>().Play("building" + buildingType+role.ToString());
         }
 
-
+    public int BuildingType
+    {
+        get { return buildingType; }
+        set { buildingType = value; }
+    }
     }
 

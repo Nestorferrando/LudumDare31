@@ -18,9 +18,9 @@ namespace Assets.scripts.input
 
             //result.set(InputValues.COCK,  Input.GetKeyDown("space"));
 
-            result.set(InputValues.CROUCH, Input.GetKey("s"));
-            getInputPulse("d", InputValues.SHOOT, result);
-            getInputPulse("a", InputValues.COCK, result);
+            result.set(InputValues.CROUCH, Input.GetKey("space"));
+            getInputPulse("k", InputValues.SHOOT, result);
+            getInputPulse("j", InputValues.COCK, result);
 
 
             return result;

@@ -68,9 +68,11 @@ public class Sheriff : MonoBehaviour
         this.model.setHiddenBehindBarrel(false);
         proposedState = PersonState.idle;
     }
-    public void performIdleAnimation()
+    public void performIdleAnimation(bool force)
     {
+       ;
         proposedState = PersonState.idle;
+        if (force) currentState = PersonState.walking;
     }
 
 
@@ -96,7 +98,7 @@ public class Sheriff : MonoBehaviour
         if (proposedState != currentState)
         {
             currentState = proposedState;
-         //   Debug.Log(model.Role.ToString() + "_" + proposedState.ToString());
+            Debug.Log(model.Role.ToString() + "_" + proposedState.ToString());
             GetComponent<Animator>().Play(model.Role.ToString() + "_" + proposedState.ToString());
         }
 

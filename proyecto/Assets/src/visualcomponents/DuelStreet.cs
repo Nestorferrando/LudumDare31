@@ -99,7 +99,7 @@ public class DuelStreet : MonoBehaviour
     public void updateSheriffModel(SheriffModel model)
     {
         sheriff.Model = model;
-        sheriff.performIdleAnimation();
+        sheriff.performIdleAnimation(true);
     }
 
     public SheriffModel getSheriffModel()

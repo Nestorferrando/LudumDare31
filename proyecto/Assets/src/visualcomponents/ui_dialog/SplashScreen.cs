@@ -23,7 +23,7 @@ namespace Assets.src.visualcomponents.ui_dialog
 
         public void remove()
         {
-            img.CrossFadeAlpha(0f, 0.5f, false);
+            img.CrossFadeAlpha(0f, 2f, false);
             GetComponentsInChildren<IntermitentText>()[0].Enabled = false;
 
         }

@@ -70,7 +70,19 @@ public class Dialog
         "I'm unarmed, have mercy!",
         "Don't Shoot, I'm Unarmed!",
         "Please, don't shoot!",
+        "Like if I had a choice"
     };
+
+    private static string[] sheriffAccepts =
+    {
+        "Great! Wellcome to Ragtown",
+        "We totally need more people like you in our town",
+        "Come in!",
+        "Wow, you look awesome, please join us",
+        "Please, please, wellcome",
+        "I can't say no to your sincere request"
+    };
+
 
     private static Dictionary<Role, string[]> dialogues = new Dictionary<Role, string[]>();
     private static Random  randomValue = new Random();
@@ -97,13 +109,13 @@ public class Dialog
         return value[i].ToUpper();
     }
 
-    public static string getToggleSheriffDialog()
+    public static string getSheriffDiedDialog()
     {
         int i = randomValue.Next(0, toggleSheriff.Length);
         return toggleSheriff[i].ToUpper();
     }
 
-    public static string getSheriffDialog()
+    public static string getSheriffRejectDialog()
     {
         int i = randomValue.Next(0, sheriff.Length);
         return sheriff[i].ToUpper();
@@ -113,6 +125,12 @@ public class Dialog
     {
         int i = randomValue.Next(0, sheriffSurrender.Length);
         return sheriffSurrender[i].ToUpper();
+    }
+
+    public static string getSheriffAcceptsDialog()
+    {
+        int i = randomValue.Next(0, sheriffAccepts.Length);
+        return sheriffAccepts[i].ToUpper();
     }
  
 

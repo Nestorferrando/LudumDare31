@@ -118,6 +118,12 @@ public class Game : MonoBehaviour
             _gameState = GameState.inmigrantsEntering;
             splashScreen.remove();
             initialize();
+            duelStreet.stopWave();
+
+            curtain.fadeToBlackPeriod(periodModel.currentYear() + "-" +
+                          (periodModel.currentYear() + GameRules.yearsPerPeriod));
+            _gameState = GameState.FadeOutWavesCompleted;
+
         }
     }
 
@@ -206,6 +212,7 @@ public class Game : MonoBehaviour
                 _gameState = GameState.inmigrantsLeave;
                 duelStreet.moveWave();
                 duelStreet.startInmigrantsFade();
+                dialogManager.avoidDuelDialog();
             }
 
         }
@@ -268,12 +275,12 @@ public class Game : MonoBehaviour
     {
         if (waveCounter >= GameRules.wavesPerPeriod)
         {
-
+            duelStreet.stopWave();
             if (periodModel.isGameFinished() ||
                 city.CityModel.getCityUnbalance().worstUnbalance() >= GameRules.totalInfestation)
             {
                 curtain.fadeToBlackStatistics(periodModel.currentPeriod(), deadSheriffs,
-                    city.CityModel.getCityUnbalance());
+                city.CityModel.getCityUnbalance());
                 _gameState = GameState.fadeOutGameFinished;
             }
             else
@@ -282,8 +289,6 @@ public class Game : MonoBehaviour
                                           (periodModel.currentYear() + GameRules.yearsPerPeriod));
                 _gameState = GameState.FadeOutWavesCompleted;
             }
-
-
         }
         else
         {

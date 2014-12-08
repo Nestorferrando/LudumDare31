@@ -14,6 +14,6 @@ public class PeriodText : MonoBehaviour {
 
     public void setYears(string year)
     {
-        text.text = "LAST PERIOD WAS\n" + year;
+        text.text = "Years\n" + year;
     }
 }

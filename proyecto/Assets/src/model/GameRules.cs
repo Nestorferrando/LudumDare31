@@ -8,7 +8,7 @@ using System.Text;
     {
 
         //---------------------------------------
-       public static readonly float totalInfestation=0.1f;
+       public static readonly float totalInfestation=0.5f;
        //---------------------------------------
        public static readonly int totalPeriods = 5;
        public static readonly int startingYear = 1840;

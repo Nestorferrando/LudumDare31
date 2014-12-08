@@ -20,35 +20,28 @@ public class UIDialog : MonoBehaviour
     private GameObject child;
     private Role role;
 
-    private bool sheriff;
-    private bool sheriffSurrender;
-    public  bool sheriffDied = false;
+    private DialogType dialogType;
 
     private bool stopped = false;
 
-    public UIDialog init(float delay, Font font, int fontSize, float fadeSpeed, bool sheriff, bool sheriffSurrender)
+
+    public UIDialog init(float delay, Font font, int fontSize, float fadeSpeed, DialogType type,Role role)
     {
         this.delay = delay;
         this.font = font;
         this.fontSize = fontSize;
         this.fadeSpeed = fadeSpeed;
-        this.sheriff = sheriff;
-        this.sheriffSurrender = sheriffSurrender;
-
-        return this;
-    }
-
-    public UIDialog setRole(Role role)
-    {
+        this.dialogType = type;
         this.role = role;
 
         return this;
     }
 
+
 	void Start ()
 	{
 
-	    if (sheriff)
+        if (dialogType == DialogType.sheriffAccept || dialogType == DialogType.sheriffReject || dialogType == DialogType.sheriffSurrender)
 	        child = GameObject.Find("SheriffText");
 	    else
 	        child = GameObject.Find("WaveText");
@@ -58,35 +51,12 @@ public class UIDialog : MonoBehaviour
 	    dialog.fontSize = fontSize;
 	    dialog.alignment = TextAnchor.MiddleCenter;
 
-        if (sheriffSurrender)
-        {
-            dialog.text = Dialog.getSheriffSurrenderDialog();
 
-        }
-
-	    if (!sheriffDied)
-	    {
-	        if (!sheriff)
-	        {
-	            dialog.text = Dialog.getWaveDialog(role);
-	        }
-	        else
-	        {
-	            if (sheriffSurrender)
-	            {
-	                dialog.text = Dialog.getSheriffSurrenderDialog();
-                    
-	            }
-	            else
-	            {
-	                dialog.text = Dialog.getSheriffDialog();
-	            }
-	        }
-	    }
-	    else
-	    {
-	        dialog.text = Dialog.getToggleSheriffDialog();
-	    }
+        if (dialogType == DialogType.waveEnters) dialog.text = Dialog.getWaveDialog(role);
+        if (dialogType == DialogType.sheriffSurrender) dialog.text = Dialog.getSheriffSurrenderDialog();
+	    if (dialogType == DialogType.sheriffAccept) dialog.text = Dialog.getSheriffAcceptsDialog();
+	    if (dialogType == DialogType.sheriffReject) dialog.text = Dialog.getSheriffRejectDialog();
+        if (dialogType == DialogType.waveWinDuel) dialog.text = Dialog.getSheriffDiedDialog();
 
 	    startTime = Time.fixedTime;
 
@@ -120,11 +90,6 @@ public class UIDialog : MonoBehaviour
     internal void startDuel()
     {
         duel = true;
-    }
-
-    internal void setSheriffDied(bool died)
-    {
-        sheriffDied = died;
     }
 
     internal void stop()

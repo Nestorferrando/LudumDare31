@@ -4,8 +4,11 @@ using System.Collections;
 public class ManageUIDialogs : MonoBehaviour
 {
 
-    [Range(0f, 4f)]
+    [Range(0f, 10f)]
     public float delay = 3f; // seconds
+
+    [Range(0f, 10f)]
+    public float delayWave = 5f; // seconds
 
     public Font font;// = new Font();
     public int fontSize = 20;
@@ -29,16 +32,23 @@ public class ManageUIDialogs : MonoBehaviour
         child = GameObject.Find("PanelWave");
         child.AddComponent<UIDialog>();
         dialog = child.GetComponent<UIDialog>();
-        dialog.init(delay, font, fontSize, fadeSpeed, false,false)
-            .setRole(role);
+        dialog.init(delayWave, font, fontSize, fadeSpeed, DialogType.waveEnters, role);
     }
 
-    private void setSheriffDialog()
+    private void setSheriffRejectDialog()
     {
         child = GameObject.Find("PanelSheriff");
         child.AddComponent<UIDialog>();
         dialog = child.GetComponent<UIDialog>();
-        dialog.init(delay, font, fontSize, fadeSpeed, true, false);
+        dialog.init(delay, font, fontSize, fadeSpeed, DialogType.sheriffReject, Role.Neutral);
+    }
+
+    private void setSheriffAcceptsDialog()
+    {
+        child = GameObject.Find("PanelSheriff");
+        child.AddComponent<UIDialog>();
+        dialog = child.GetComponent<UIDialog>();
+        dialog.init(delay, font, fontSize, fadeSpeed, DialogType.sheriffAccept, Role.Neutral);
     }
 
     public void setSheriffSurrenderDialog()
@@ -46,13 +56,20 @@ public class ManageUIDialogs : MonoBehaviour
         child = GameObject.Find("PanelSheriff");
         child.AddComponent<UIDialog>();
         dialog = child.GetComponent<UIDialog>();
-        dialog.init(delay, font, fontSize, fadeSpeed, true, true).setSheriffDied(false);
+        dialog.init(delay, font, fontSize, fadeSpeed, DialogType.sheriffSurrender, Role.Neutral);
     }
+
 
     public void startDuelDialog()
     {
         dialog.startDuel();
-        setSheriffDialog();
+        setSheriffRejectDialog();
+    }
+
+    public void avoidDuelDialog()
+    {
+        dialog.startDuel();
+        setSheriffAcceptsDialog();
     }
 
     public void setNewSheriffDialog()
@@ -60,8 +77,8 @@ public class ManageUIDialogs : MonoBehaviour
         child = GameObject.Find("PanelWave");
         child.AddComponent<UIDialog>();
         dialog = child.GetComponent<UIDialog>();
-        dialog.init(delay, font, fontSize, fadeSpeed, false, false)
-            .setSheriffDied(true);
+        dialog.init(delay, font, fontSize, fadeSpeed, DialogType.waveWinDuel, Role.Neutral);
+
     }
 
     public void stop()

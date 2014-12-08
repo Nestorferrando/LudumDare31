@@ -166,6 +166,8 @@ public class Game : MonoBehaviour
 
     private void performDuel()
     {
+        float timeIni = Time.fixedTime;
+
         if (!duelStreet.isDuelModeActive())
         {
             switch (duelStreet.getDuelResult())

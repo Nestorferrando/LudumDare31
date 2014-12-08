@@ -94,25 +94,25 @@ public class Dialog
         dialogues.TryGetValue(r, out value);
 
         int i = randomValue.Next(0, value.Length);
-        return value[i];
+        return value[i].ToUpper();
     }
 
     public static string getToggleSheriffDialog()
     {
         int i = randomValue.Next(0, toggleSheriff.Length);
-        return toggleSheriff[i];
+        return toggleSheriff[i].ToUpper();
     }
 
     public static string getSheriffDialog()
     {
         int i = randomValue.Next(0, sheriff.Length);
-        return sheriff[i];
+        return sheriff[i].ToUpper();
     }
 
     public static string getSheriffSurrenderDialog()
     {
         int i = randomValue.Next(0, sheriffSurrender.Length);
-        return sheriffSurrender[i];
+        return sheriffSurrender[i].ToUpper();
     }
  
 

@@ -6,7 +6,8 @@ public class ManageUIDialogs : MonoBehaviour
 
     [Range(0f, 4f)]
     public float delay = 3f; // seconds
-    public Font font = new Font();
+
+    public Font font;// = new Font();
     public int fontSize = 20;
     [Range(0, 1f)]
     public float fadeSpeed = .5f;
@@ -63,4 +64,14 @@ public class ManageUIDialogs : MonoBehaviour
             .setSheriffDied(true);
     }
 
+    public void stop()
+    {
+        child = GameObject.Find("PanelSheriff");
+        dialog = child.GetComponent<UIDialog>();
+        if (dialog != null) dialog.stop();
+
+        child = GameObject.Find("PanelWave");
+        dialog = child.GetComponent<UIDialog>();
+        if (dialog != null) dialog.stop();
+    }
 }

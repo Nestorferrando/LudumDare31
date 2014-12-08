@@ -53,10 +53,14 @@ public class ManageUIDialogs : MonoBehaviour
 
     public void setSheriffSurrenderDialog()
     {
+
+        //DOES NOT WORK AND WE DONT HAVE TIME
+        /*
         child = GameObject.Find("PanelSheriff");
         child.AddComponent<UIDialog>();
         dialog = child.GetComponent<UIDialog>();
         dialog.init(delay, font, fontSize, fadeSpeed, DialogType.sheriffSurrender, Role.Neutral);
+        */
     }
 
 

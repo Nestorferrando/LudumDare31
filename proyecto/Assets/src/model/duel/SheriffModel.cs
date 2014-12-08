@@ -17,6 +17,7 @@ public class SheriffModel : PersonModel
     public SheriffModel(Role role, Role antiRole)
         : base(role)
     {
+        Debug.Log(antiRole);
         this.antiRole = antiRole;
         this.bullets = GameRules.sheriffBullets;
     }

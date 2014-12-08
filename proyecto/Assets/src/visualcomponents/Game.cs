@@ -143,7 +143,7 @@ public class Game : MonoBehaviour
             periodModel.increasePeriod();
             waveCounter = 0;
             city.Regenerate();
-            duelStreet.updateSheriffModel(new SheriffModel(Role.Neutral, InmigrationUtils.getRandomRole()));
+            duelStreet.updateSheriffModel(new SheriffModel(Role.Neutral, duelStreet.getSheriffModel().AntiRole));
             duelStreet.resetWave(InmigrationUtils.getInmigrants(duelStreet.getSheriffModel(),
                 city.CityModel.getCityUnbalance()));
             _gameState = GameState.fadeInWavesCompleted;
@@ -276,6 +276,8 @@ public class Game : MonoBehaviour
         if (waveCounter >= GameRules.wavesPerPeriod)
         {
             duelStreet.stopWave();
+            Debug.Log("====> current infestation " + city.CityModel.getCityUnbalance().worstUnbalance());
+
             if (periodModel.isGameFinished() ||
                 city.CityModel.getCityUnbalance().worstUnbalance() >= GameRules.totalInfestation)
             {

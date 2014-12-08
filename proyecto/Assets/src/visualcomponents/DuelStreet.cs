@@ -200,6 +200,7 @@ public class DuelStreet : MonoBehaviour
 
         if (sheriff.Model.Bullets == 0)
         {
+            sheriff.performSurrenderAnimation();
             duelResult = DuelResult.surrender;
             duelEnabled = false;
             icons.GameplayEnabled = false;

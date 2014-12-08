@@ -44,6 +44,13 @@ public class Sheriff : MonoBehaviour
         proposedState = PersonState.shooting;
     }
 
+    public void performSurrenderAnimation()
+    {
+        proposedState = PersonState.surrender;
+    }
+
+
+
     public void performCockAnimation()
     {
         proposedState = PersonState.idle_cock;

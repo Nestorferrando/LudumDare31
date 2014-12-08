@@ -15,8 +15,6 @@ public class City : MonoBehaviour
     private CityModel cityModel = new CityModel();
 
 
-
-
 	// Use this for initialization
 	void Start () {
 

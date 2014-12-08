@@ -56,5 +56,17 @@ using System.Text;
         {
             get { return totalPopulation; }
         }
+
+
+        public float worstUnbalance()
+        {
+            float worstUnbalance = indianUnbalance;
+            if (minerUnbalance > worstUnbalance) worstUnbalance = minerUnbalance;
+            if (criminalUnbalance > worstUnbalance) worstUnbalance = criminalUnbalance;
+            if (businessUnbalance > worstUnbalance) worstUnbalance = businessUnbalance;
+
+            return worstUnbalance;
+        }
+
     }
 

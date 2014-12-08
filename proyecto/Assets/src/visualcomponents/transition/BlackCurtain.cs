@@ -56,9 +56,9 @@ public class BlackCurtain : MonoBehaviour
     }
 
 
-    public void fadeToBlackStatistics(String text)
+    public void fadeToBlackStatistics(int survivedPeriods, int timesSheriffChanged, CityStatus cityStatus)
     {
-        textPeriod.setYears(text);
+        textStatistics.setStatistics(survivedPeriods, timesSheriffChanged, cityStatus);
         showStatistics();
         this.fadeToBlack();
     }

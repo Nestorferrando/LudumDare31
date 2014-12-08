@@ -11,11 +11,16 @@ public class CityModel
     public CityModel()
     {
         population=new Dictionary<Role, int>();
-        
-        population.Add(Role.BusinessMan,50);
-        population.Add(Role.Criminal, 50);
-        population.Add(Role.Indian, 50);
-        population.Add(Role.Miner, 50); 
+
+        resetToInitialPopulation();
+    }
+
+    public void resetToInitialPopulation()
+    {
+        population[Role.BusinessMan] = 50;
+        population[Role.Criminal] = 50;
+        population[Role.Indian] = 50;
+        population[Role.Miner] = 50;
     }
 
 
@@ -47,11 +52,12 @@ public class CityModel
         population[role] = population[role]+1;
     }
 
+    /*
     public void removePopulationFromAllRoles(int amount)
     {
         population[Role.BusinessMan] = Math.Max(population[Role.BusinessMan] - amount,0);
 
-    }
+    }*/
 
 
 

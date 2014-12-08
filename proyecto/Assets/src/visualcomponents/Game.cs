@@ -19,6 +19,7 @@ public class Game : MonoBehaviour
     private ManageUIDialogs dialogManager;
 
     private int waveCounter = 0;
+    private int deadSheriffs = 0;
 
 
 
@@ -43,7 +44,10 @@ public class Game : MonoBehaviour
       duelStreet.moveWave();
       _gameState = GameState.inmigrantsEntering;
       periodModel.reset();
+        city.CityModel.resetToInitialPopulation();
       city.Regenerate();
+      deadSheriffs = 0;
+      waveCounter = 0;
     }
 	
 	// Update is called once per frame
@@ -74,28 +78,51 @@ public class Game : MonoBehaviour
 	            break;
 
         case GameState.FadeOutWavesCompleted:
-	            if (curtain.fadeFinished())
-	            {
-                    periodModel.increasePeriod();
-	                waveCounter = 0;
-                    city.Regenerate();
-                    duelStreet.updateSheriffModel(new SheriffModel(Role.Criminal, Role.Criminal));
-                    duelStreet.resetWave(InmigrationWaveGenerator.getCriminals(duelStreet.getSheriffModel(), city.CityModel.getCityUnbalance()));
-	                _gameState = GameState.fadeInWavesCompleted;
-                    curtain.fadeToAlphaPeriod();
-	            }
+	            performFadeOutWavesCompleted();
 	            break;
         case GameState.fadeInWavesCompleted:
-                if (curtain.fadeFinished())
-                {
-                    duelStreet.moveWave();
-                    _gameState = GameState.inmigrantsEntering;
-                }
+                performFadeInWavesCompleted();
 	            break;
+        case GameState.fadeOutGameFinished:
+	            if (curtain.fadeFinished())
+	            {
+	                InputResult result= InputUtils.readInput();
+	                if (result.get(InputValues.SHOOT))
+	                {
+	                    initialize();
+                        curtain.fadeToAlphaStatistics();
+	                }
+	            }
+	            break;
+
 
 	    }
 
 	}
+
+    private void performFadeInWavesCompleted()
+    {
+        if (curtain.fadeFinished())
+        {
+            duelStreet.moveWave();
+            _gameState = GameState.inmigrantsEntering;
+        }
+    }
+
+    private void performFadeOutWavesCompleted()
+    {
+        if (curtain.fadeFinished())
+        {
+            periodModel.increasePeriod();
+            waveCounter = 0;
+            city.Regenerate();
+            duelStreet.updateSheriffModel(new SheriffModel(Role.Criminal, Role.Criminal));
+            duelStreet.resetWave(InmigrationWaveGenerator.getCriminals(duelStreet.getSheriffModel(),
+                city.CityModel.getCityUnbalance()));
+            _gameState = GameState.fadeInWavesCompleted;
+            curtain.fadeToAlphaPeriod();
+        }
+    }
 
     private void performInmigrantsLeave()
     {
@@ -111,7 +138,7 @@ public class Game : MonoBehaviour
                 city.CityModel.getCityUnbalance()));
             duelStreet.stopInmigrantsFade();
             duelStreet.moveWave();
-            nextWaveOrNextPeriod();
+            nextWaveOrNextPeriodOrGameFinish();
 
         }
     }
@@ -126,7 +153,7 @@ public class Game : MonoBehaviour
                 city.CityModel.getCityUnbalance()));
             duelStreet.stopInmigrantsFade();
             duelStreet.moveWave();
-            nextWaveOrNextPeriod();
+            nextWaveOrNextPeriodOrGameFinish();
         }
     }
 
@@ -184,7 +211,7 @@ public class Game : MonoBehaviour
                     _gameState = GameState.inmigrantsLeave;
                     duelStreet.moveWave();
                     dialogManager.setNewSheriffDialog();
-
+                    deadSheriffs++;
                     break;
             }
         duelStreet.startInmigrantsFade();
@@ -214,12 +241,26 @@ public class Game : MonoBehaviour
     }
 
 
-    private void nextWaveOrNextPeriod()
+    private void nextWaveOrNextPeriodOrGameFinish()
     {
         if (waveCounter >= GameRules.wavesPerPeriod)
         {
-            curtain.fadeToBlackPeriod(periodModel.currentYear()+"-"+(periodModel.currentYear()+GameRules.yearsPerPeriod));
-            _gameState = GameState.FadeOutWavesCompleted;
+
+            if (periodModel.isGameFinished() ||
+                city.CityModel.getCityUnbalance().worstUnbalance() >= GameRules.totalInfestation)
+            {
+                curtain.fadeToBlackStatistics(periodModel.currentPeriod(), deadSheriffs,
+                    city.CityModel.getCityUnbalance());
+                _gameState = GameState.fadeOutGameFinished;
+            }
+            else
+            {
+                curtain.fadeToBlackPeriod(periodModel.currentYear() + "-" +
+                                          (periodModel.currentYear() + GameRules.yearsPerPeriod));
+                _gameState = GameState.FadeOutWavesCompleted;
+            }
+
+
         }
         else
         {

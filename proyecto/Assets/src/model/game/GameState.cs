@@ -13,10 +13,7 @@ using System.Text;
         inmigrantsLeave,
         FadeOutWavesCompleted,
         fadeInWavesCompleted,
-        fadeOutDeadSheriff, 
-        fadeInDeadSheriff,
-        fadeOutGameFinished,
-        fadeInGameFinished
+        fadeOutGameFinished
 
     }
 

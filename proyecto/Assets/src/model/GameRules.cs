@@ -8,9 +8,9 @@ using System.Text;
     {
 
         //---------------------------------------
-       public static readonly float totalInfestation=0.5f;
+       public static readonly float totalInfestation=0.1f;
        //---------------------------------------
-       public static readonly int totalPeriods = 15;
+       public static readonly int totalPeriods = 5;
        public static readonly int startingYear = 1840;
        public static readonly int yearsPerPeriod = 1;
        //---------------------------------------
@@ -19,7 +19,7 @@ using System.Text;
         //---------------------------------------
        public static readonly int wavesPerPeriod = 3;
 
-       public static readonly int sheriffBullets = 2;
+       public static readonly int sheriffBullets = 6;
 
         //---------------------------------------
        public static readonly float myKillSuccessRatio = 1.0f;

@@ -9,7 +9,7 @@ public class InmigrationWaveGenerator
 
 
 
-
+    /*
     public static Role[] getCriminals(SheriffModel sheriff, CityStatus cityStatus)
     {
         Role[] returnRoles = new Role[GameRules.inmigrantWaveSize];
@@ -18,7 +18,7 @@ public class InmigrationWaveGenerator
             returnRoles[i] = Role.Criminal;
         }
         return returnRoles;
-    }
+    }*/
 
     public static Role[] getInmigrants(SheriffModel sheriff, CityStatus cityStatus)
         {

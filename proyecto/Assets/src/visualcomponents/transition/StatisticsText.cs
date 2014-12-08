@@ -33,9 +33,9 @@ public class StatisticsText : MonoBehaviour {
                 message = "Too many indians came into your city and they took the control of it.\n\n";
 
             if (cityStatus.MinerUnbalance >= GameRules.totalInfestation)
-                message = "Too many miners came into your city.\n  The city became too noisy and unconfortable.\n\n";
-                message = message+ "Periods survived: "+survivedPeriods + "/" + GameRules.totalPeriods + "\n\n";
+                message = "Too many miners came into your city.\n  The city became too noisy and unconfortable.\n\n"; 
         }
+        message = message + "Periods survived: " + survivedPeriods + "/" + GameRules.totalPeriods + "\n\n";
 
         message = message + "Times sheriff has changed: " + timesSheriffChanged + "\n";
 

@@ -28,7 +28,9 @@ public class Inmigrant : MonoBehaviour
     public InmigrantModel Model
     {
         get { return model; }
-        set { model = value; }
+        set { model = value;
+            currentState = PersonState.idle_cock;
+        }
     }
 
 

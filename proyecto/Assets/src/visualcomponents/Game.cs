@@ -191,14 +191,6 @@ public class Game : MonoBehaviour
             return;
         }
 
-        if (duelStreet.getSheriffModel().Bullets > 0 && Time.realtimeSinceStartup > speechTime + 3f)
-        {
-            _gameState = GameState.inmigrantsLeave;
-            duelStreet.moveWave();
-            duelStreet.startInmigrantsFade();
-            return;
-        }
-
         if (duelStreet.getSheriffModel().Bullets > 0)
         {
             InputResult result = InputUtils.readInput();
@@ -209,6 +201,13 @@ public class Game : MonoBehaviour
                 duelStreet.startDuelMode();
                 dialogManager.startDuelDialog();
             }
+            if (result.get(InputValues.SHOOT))
+            {
+                _gameState = GameState.inmigrantsLeave;
+                duelStreet.moveWave();
+                duelStreet.startInmigrantsFade();
+            }
+
         }
     }
 
@@ -247,6 +246,11 @@ public class Game : MonoBehaviour
             {
                 duelStreet.stopWave();
                 _gameState = GameState.preDuelSpeech;
+                if (duelStreet.getSheriffModel().Bullets > 0)
+                {
+                    duelStreet.enableGetInIcon(true);
+                    duelStreet.enableGunIcon(true);
+                }
                 speechTime = Time.realtimeSinceStartup;
                 dialogManager.setWaveDialog(duelStreet.GetInmigrantModel(0).Role);
             }

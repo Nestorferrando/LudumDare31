@@ -98,7 +98,6 @@ public class Sheriff : MonoBehaviour
         if (proposedState != currentState)
         {
             currentState = proposedState;
-            Debug.Log(model.Role.ToString() + "_" + proposedState.ToString());
             GetComponent<Animator>().Play(model.Role.ToString() + "_" + proposedState.ToString());
         }
 

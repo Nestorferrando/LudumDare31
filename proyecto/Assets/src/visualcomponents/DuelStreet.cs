@@ -29,8 +29,8 @@ public class DuelStreet : MonoBehaviour
     private int activeInmigrants;
 
     private Sheriff sheriff;
-
     private FrontBarrel frontBarrel;
+    private IconsGui icons;
 
     private Boolean inmigrantsFade;
     private float fadeTime;
@@ -43,6 +43,7 @@ public class DuelStreet : MonoBehaviour
         sheriff = GetComponentsInChildren<Sheriff>()[0];
         inmigrants = GetComponentsInChildren<Inmigrant>();
         frontBarrel = GetComponentsInChildren<FrontBarrel>()[0];
+        icons = GetComponentsInChildren<IconsGui>()[0];
         duelEnabled = false;
 
     }
@@ -102,6 +103,15 @@ public class DuelStreet : MonoBehaviour
         sheriff.performIdleAnimation(true);
     }
 
+    public void enableGetInIcon(Boolean enable)
+    {
+        icons.GetInEnabled = enable;
+    }
+    public void enableGunIcon(Boolean enable)
+    {
+        icons.ShootEnabled = enable;
+    }
+
     public SheriffModel getSheriffModel()
     {
         return sheriff.Model;
@@ -115,6 +125,8 @@ public class DuelStreet : MonoBehaviour
 
     public void moveWave()
     {
+        enableGetInIcon(false);
+        enableGunIcon(false);
         for (int i = 0; i < activeInmigrants; i++)
         {
             if (inmigrants[i].Model.Alive)
@@ -134,6 +146,8 @@ public class DuelStreet : MonoBehaviour
 
     public void startDuelMode()
     {
+        enableGetInIcon(false);
+        enableGunIcon(false);
         duelEnabled = true;
 
         sheriff.Model.cock();

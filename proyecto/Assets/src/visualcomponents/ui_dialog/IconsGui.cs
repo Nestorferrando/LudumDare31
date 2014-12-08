@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class IconsGui : MonoBehaviour
@@ -21,11 +22,18 @@ public class IconsGui : MonoBehaviour
         SpriteRenderer gunRenderer = GameObject.Find("gunIcon").GetComponent<SpriteRenderer>();
         SpriteRenderer gameplayRenderer = GameObject.Find("gameplayIcon").GetComponent<SpriteRenderer>();
 
+        GameObject bulletCanvas = GameObject.Find("bulletIcon");
+        GameObject bulletText = GameObject.Find("bulletText");
+
        gunRenderer.enabled = shootEnabled;
        inRenderer.enabled = getInEnabled;
        gameplayRenderer.enabled = gameplayEnabled;
 
 
+       bulletCanvas.GetComponent<SpriteRenderer>().enabled = gameplayEnabled;
+       bulletText.GetComponent<Text>().enabled = gameplayEnabled;
+
+        
         float alpha = (float)((Math.Sin(Time.realtimeSinceStartup*4) + 1)/4) + 0.5f;
         float alpha2 =1.5f- alpha;
 

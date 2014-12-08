@@ -7,6 +7,7 @@ using Assets.scripts;
 using Assets.scripts.input;
 using Assets.src.visualcomponents;
 using UnityEngine;
+using UnityEngine.UI;
 using Debug = UnityEngine.Debug;
 using Random = System.Random;
 
@@ -156,6 +157,7 @@ public class DuelStreet : MonoBehaviour
         enableGetInIcon(false);
         enableGunIcon(false);
         duelEnabled = true;
+        GameObject.Find("bulletText").GetComponent<Text>().text = sheriff.Model.Bullets+"";
 
         sheriff.Model.cock();
         sheriff.performCockAnimation();
@@ -210,7 +212,8 @@ public class DuelStreet : MonoBehaviour
 
         if (sheriffShoots)
             {
-                tryToKillEnemy();  
+                tryToKillEnemy();
+                GameObject.Find("bulletText").GetComponent<Text>().text = sheriff.Model.Bullets + "";
             }
 
         //enemy operations

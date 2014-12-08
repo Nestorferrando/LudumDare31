@@ -112,6 +112,12 @@ public class DuelStreet : MonoBehaviour
         icons.ShootEnabled = enable;
     }
 
+    /*
+    public void enableGameplayIcon(Boolean enable)
+    {
+        icons.GameplayEnabled = enable;
+    }*/
+
     public SheriffModel getSheriffModel()
     {
         return sheriff.Model;
@@ -146,6 +152,7 @@ public class DuelStreet : MonoBehaviour
 
     public void startDuelMode()
     {
+        icons.GameplayEnabled = true;
         enableGetInIcon(false);
         enableGunIcon(false);
         duelEnabled = true;
@@ -193,10 +200,9 @@ public class DuelStreet : MonoBehaviour
         {
             duelResult = DuelResult.surrender;
             duelEnabled = false;
+            icons.GameplayEnabled = false;
             return;
         }
-
-
 
         //sheriff operations
 
@@ -212,6 +218,7 @@ public class DuelStreet : MonoBehaviour
         {
             duelResult = DuelResult.won;
             duelEnabled = false;
+            icons.GameplayEnabled = false;
             return;
         }
 
@@ -233,6 +240,7 @@ public class DuelStreet : MonoBehaviour
         {
             duelResult = DuelResult.dead;
             duelEnabled = false;
+            icons.GameplayEnabled = false;
             return;  
         }
     }

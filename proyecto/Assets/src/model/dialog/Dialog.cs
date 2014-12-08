@@ -57,6 +57,10 @@ public class Dialog
 
     private static string[] sheriff =
     {
+        "We don't need people like you arround!",
+        "We already have too many of your type here!",
+        "Leave! this town will not be your home!",
+        "This town has already too many people like you!. Go away!",
         "Stay away from my city, you scum!",
         "This city is not big enough for people like you",
         "I am the fastest shooter in here, so don't even try to kill me!",

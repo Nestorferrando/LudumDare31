@@ -62,18 +62,19 @@ public class ManageUIDialogs : MonoBehaviour
 
     public void startDuelDialog()
     {
-        dialog.startDuel();
+        dialog.destroy();
         setSheriffRejectDialog();
     }
 
     public void avoidDuelDialog()
     {
-        dialog.startDuel();
+        dialog.destroy();
         setSheriffAcceptsDialog();
     }
 
     public void setNewSheriffDialog()
     {
+        dialog.destroy();
         child = GameObject.Find("PanelWave");
         child.AddComponent<UIDialog>();
         dialog = child.GetComponent<UIDialog>();

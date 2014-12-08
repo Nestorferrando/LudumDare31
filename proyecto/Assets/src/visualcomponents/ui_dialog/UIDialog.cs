@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class UIDialog : MonoBehaviour
 {
-    public bool duel = false;
     
     [Range(0f,4f)]
     private float delay; // seconds
@@ -66,8 +65,9 @@ public class UIDialog : MonoBehaviour
     }
 	
 	void Update () {
-	    if (Time.fixedTime > startTime + delay || duel || stopped)
+	    if (Time.fixedTime > startTime + delay || stopped)
 	    {
+            
 	        fadeToAlpha();
             DestroyObject(GameObject.Find("SheriffText").GetComponent<Text>());
             DestroyObject(GameObject.Find("WaveText").GetComponent<Text>());
@@ -87,9 +87,13 @@ public class UIDialog : MonoBehaviour
     }
 
 
-    internal void startDuel()
+
+    internal void destroy()
     {
-        duel = true;
+        fadeToAlpha();
+        DestroyObject(GameObject.Find("SheriffText").GetComponent<Text>());
+        DestroyObject(GameObject.Find("WaveText").GetComponent<Text>());
+        DestroyObject(this);
     }
 
     internal void stop()

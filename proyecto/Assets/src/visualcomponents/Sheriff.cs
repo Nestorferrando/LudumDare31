@@ -5,7 +5,7 @@ using System.Collections;
 public class Sheriff : MonoBehaviour
 {
 
-    private SheriffModel model = new SheriffModel(Role.BusinessMan, Role.Criminal);
+    private SheriffModel model = new SheriffModel(Role.Neutral, Role.Criminal);
 
     private PersonState currentState;
     private PersonState proposedState;

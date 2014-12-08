@@ -2,23 +2,25 @@
 using Debug = UnityEngine.Debug;
 
 
-public class InmigrationWaveGenerator
+public class InmigrationUtils
     {
 
     private static Random random = new Random();
 
 
 
-    /*
-    public static Role[] getCriminals(SheriffModel sheriff, CityStatus cityStatus)
+    
+    public static Role getRandomRole()
     {
-        Role[] returnRoles = new Role[GameRules.inmigrantWaveSize];
-        for (int i = 0; i < returnRoles.Length; i++)
-        {
-            returnRoles[i] = Role.Criminal;
-        }
-        return returnRoles;
-    }*/
+        double rnd = random.NextDouble();
+
+        if (rnd<0.25) return Role.BusinessMan;
+        if (rnd < 0.5) return Role.Miner;
+        if (rnd < 0.75) return Role.Indian;
+        return Role.Criminal;
+
+
+    }
 
     public static Role[] getInmigrants(SheriffModel sheriff, CityStatus cityStatus)
         {

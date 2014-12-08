@@ -34,7 +34,7 @@ public class Inmigrant : MonoBehaviour
     }
 
 
-    public void moveInstantlyToPosition(Vector2 position)
+    public void moveInstantlyToPosition(Vector3 position)
     {
         rigidbody2D.transform.position = position;
         proposedState = PersonState.idle;

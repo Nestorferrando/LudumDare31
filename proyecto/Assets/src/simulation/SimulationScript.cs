@@ -25,7 +25,7 @@ public class SimulationScript : MonoBehaviour
 
 	        for (int wave = 0; wave < 3; wave++)
 	        {
-	            Role[] inmigrants = InmigrationWaveGenerator.getInmigrants(sheriff, cityModel.getCityUnbalance());
+	            Role[] inmigrants = InmigrationUtils.getInmigrants(sheriff, cityModel.getCityUnbalance());
 
 	            for (int j = 0; j < inmigrants.Length; j++)
 	            {

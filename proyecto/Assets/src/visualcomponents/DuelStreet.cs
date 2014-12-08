@@ -18,9 +18,9 @@ public class DuelStreet : MonoBehaviour
 
     private static Random random = new Random();
 
-    private readonly Vector2 inmigrant1InitialPosition = new Vector3(11.04f, -2.05f,0);
-    private readonly Vector2 inmigrant2InitialPosition = new Vector3(12.43f, -3.06f,-0.1f);
-    private readonly Vector2 inmigrant3InitialPosition = new Vector3(11.53f, -4.39f,-0.2f);
+    private readonly Vector3 inmigrant1InitialPosition = new Vector3(11.97f, -2.2f, 0.04f);
+    private readonly Vector3 inmigrant2InitialPosition = new Vector3(12.69f, -3f, -0.1f);
+    private readonly Vector3 inmigrant3InitialPosition = new Vector3(10.88f, -3.6f, -0.2f);
 
 
     private bool duelEnabled;

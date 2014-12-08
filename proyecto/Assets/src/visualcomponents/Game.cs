@@ -40,8 +40,8 @@ public class Game : MonoBehaviour
 
     private void initialize()
     {
-      duelStreet.updateSheriffModel(new SheriffModel(Role.Criminal,Role.Criminal));
-      duelStreet.resetWave(InmigrationWaveGenerator.getInmigrants(duelStreet.getSheriffModel(), city.CityModel.getCityUnbalance()));
+      duelStreet.updateSheriffModel(new SheriffModel(Role.Neutral,InmigrationUtils.getRandomRole()));
+      duelStreet.resetWave(InmigrationUtils.getInmigrants(duelStreet.getSheriffModel(), city.CityModel.getCityUnbalance()));
 
       duelStreet.moveWave();
       _gameState = GameState.inmigrantsEntering;
@@ -143,8 +143,8 @@ public class Game : MonoBehaviour
             periodModel.increasePeriod();
             waveCounter = 0;
             city.Regenerate();
-            duelStreet.updateSheriffModel(new SheriffModel(Role.Criminal, Role.Criminal));
-            duelStreet.resetWave(InmigrationWaveGenerator.getInmigrants(duelStreet.getSheriffModel(),
+            duelStreet.updateSheriffModel(new SheriffModel(Role.Neutral, InmigrationUtils.getRandomRole()));
+            duelStreet.resetWave(InmigrationUtils.getInmigrants(duelStreet.getSheriffModel(),
                 city.CityModel.getCityUnbalance()));
             _gameState = GameState.fadeInWavesCompleted;
             curtain.fadeToAlphaPeriod();
@@ -161,7 +161,7 @@ public class Game : MonoBehaviour
                 city.CityModel.AddIndividual(duelStreet.GetInmigrantModel(i).Role);
             }
 
-            duelStreet.resetWave(InmigrationWaveGenerator.getInmigrants(duelStreet.getSheriffModel(),
+            duelStreet.resetWave(InmigrationUtils.getInmigrants(duelStreet.getSheriffModel(),
                 city.CityModel.getCityUnbalance()));
             duelStreet.stopInmigrantsFade();
             duelStreet.moveWave();
@@ -176,7 +176,7 @@ public class Game : MonoBehaviour
     {
         if (duelStreet.inmigrantsAlreadyFaded())
         {
-            duelStreet.resetWave(InmigrationWaveGenerator.getInmigrants(duelStreet.getSheriffModel(),
+            duelStreet.resetWave(InmigrationUtils.getInmigrants(duelStreet.getSheriffModel(),
                 city.CityModel.getCityUnbalance()));
             duelStreet.stopInmigrantsFade();
             duelStreet.moveWave();

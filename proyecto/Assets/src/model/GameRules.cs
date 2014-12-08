@@ -23,20 +23,20 @@ using System.Text;
 
         //---------------------------------------
        public static readonly float myKillSuccessRatio = 1.0f;
-       public static readonly float enemiesKillSuccessRatio = 0.2f;
+       public static readonly float enemiesKillSuccessRatio = 1.0f;
 
        //---------------------------------------
 
-       public static readonly float ShootSpeed = 0.5f;
+       public static readonly float ShootSpeed = 0.01f;
 
-       public static readonly float sheriffCockSpeed = 0.25f;
-
-
-       public static readonly float inmigrantMinCrouchInverval = 2.0f;
-       public static readonly float inmigrantCrouchIntervalRandom = 2.0f;
+       public static readonly float sheriffCockSpeed = 0.01f;
 
 
-       public static readonly float inmigrantDelayBetWeenStandAndShoot = 0.5f;
+       public static readonly float inmigrantMinCrouchInverval = 0.75f;
+       public static readonly float inmigrantCrouchIntervalRandom = 2f;
+
+
+       public static readonly float inmigrantDelayBetWeenStandAndShoot = 0.4f;
 
 
 

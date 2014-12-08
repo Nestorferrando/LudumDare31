@@ -24,6 +24,8 @@ public class UIDialog : MonoBehaviour
     private bool sheriffSurrender;
     public  bool sheriffDied = false;
 
+    private bool stopped = false;
+
     public UIDialog init(float delay, Font font, int fontSize, float fadeSpeed, bool sheriff, bool sheriffSurrender)
     {
         this.delay = delay;
@@ -93,12 +95,12 @@ public class UIDialog : MonoBehaviour
 	    fadeFromAlpha();
     }
 	
-	// Update is called once per frame
-	void LateUpdate () {
-	    if (Time.fixedTime > startTime + delay || duel)
+	void Update () {
+	    if (Time.fixedTime > startTime + delay || duel || stopped)
 	    {
 	        fadeToAlpha();
-            DestroyObject(child.GetComponent<Text>());
+            DestroyObject(GameObject.Find("SheriffText").GetComponent<Text>());
+            DestroyObject(GameObject.Find("WaveText").GetComponent<Text>());
             DestroyObject(this);
 	    }
 
@@ -123,5 +125,10 @@ public class UIDialog : MonoBehaviour
     internal void setSheriffDied(bool died)
     {
         sheriffDied = died;
+    }
+
+    internal void stop()
+    {
+        this.stopped = true;
     }
 }

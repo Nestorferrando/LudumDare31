@@ -7,10 +7,12 @@ using UnityEngine.UI;
 public class BlackCurtain : MonoBehaviour
 {
     public float fadeSpeed = 1f;
+    public float delayBetweenFades = 3f;
     private Image img;
     private PeriodText textPeriod;
     private StatisticsText textStatistics;
     private GameObject child;
+    private ManageUIDialogs manageDialogs;
 
     private float fadeStart;
 	// Use this for initialization
@@ -20,7 +22,13 @@ public class BlackCurtain : MonoBehaviour
         textPeriod = GameObject.Find("Period").GetComponent<PeriodText>();
         textStatistics = GameObject.Find("Statistics").GetComponent<StatisticsText>();
 
-       // this.fadeToBlackPeriod("asdasdasd");
+	    GameObject parent = transform.parent.gameObject;
+	    
+
+	    GameObject canvas = GameObject.Find("Canvas");
+	    manageDialogs = canvas.GetComponent<ManageUIDialogs>();
+	    
+
 	}
 	
 	// Update is called once per frame
@@ -32,7 +40,7 @@ public class BlackCurtain : MonoBehaviour
 
     public bool fadeFinished()
     {
-        return Time.realtimeSinceStartup - fadeStart > fadeSpeed;
+        return Time.realtimeSinceStartup - fadeStart > delayBetweenFades;
     }
     public void fadeToBlackPeriod(String text)
     {
@@ -65,8 +73,8 @@ public class BlackCurtain : MonoBehaviour
     private void fadeToBlack()
     {
         fadeStart = Time.realtimeSinceStartup;
-        img.CrossFadeAlpha(255f, fadeSpeed, false); // sec        
-        //text.CrossFadeAlpha(255f, fadeSpeed, false);
+        img.CrossFadeAlpha(255f, fadeSpeed, false); // sec  
+        manageDialogs.stop();
     }
 
     private void fadeToAlpha()
@@ -82,7 +90,6 @@ public class BlackCurtain : MonoBehaviour
         child = GameObject.Find("Period");
         Text childText = child.GetComponent<Text>();
         childText.enabled = true;
-        Debug.Log("hi");
     }
 
     private  void hidePeriod()

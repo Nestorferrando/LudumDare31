@@ -64,4 +64,14 @@ public class ManageUIDialogs : MonoBehaviour
             .setSheriffDied(true);
     }
 
+    public void stop()
+    {
+        child = GameObject.Find("PanelSheriff");
+        dialog = child.GetComponent<UIDialog>();
+        if (dialog != null) dialog.stop();
+
+        child = GameObject.Find("PanelWave");
+        dialog = child.GetComponent<UIDialog>();
+        if (dialog != null) dialog.stop();
+    }
 }

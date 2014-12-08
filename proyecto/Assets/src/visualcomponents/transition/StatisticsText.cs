@@ -47,7 +47,7 @@ public class StatisticsText : MonoBehaviour {
 
 
         message = message + "\n";
-        message = message+ "press 'shoot' to restart\n";
+        message = message+ "press <SPACE> to restart\n";
 
         text.text = message;
 

@@ -87,7 +87,7 @@ public class UIDialog : MonoBehaviour
 
     public void fadeFromAlpha()
     {
-        img.CrossFadeAlpha(100f, fadeSpeed, false); // sec
+        img.CrossFadeAlpha(150f, fadeSpeed, false); // sec
     }
 
 

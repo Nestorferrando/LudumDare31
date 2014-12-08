@@ -10,7 +10,7 @@ using System.Text;
         //---------------------------------------
        public static readonly float totalInfestation=0.3f;
        //---------------------------------------
-       public static readonly int totalPeriods = 12;
+       public static readonly int totalPeriods = 8;
        public static readonly int startingYear = 1840;
        public static readonly int yearsPerPeriod = 1;
        //---------------------------------------

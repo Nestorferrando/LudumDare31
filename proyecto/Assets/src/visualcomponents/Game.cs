@@ -115,7 +115,7 @@ public class Game : MonoBehaviour
         if (curtain.fadeFinished())
         {
             InputResult result = InputUtils.readInput();
-            if (result.get(InputValues.SHOOT))
+            if (result.get(InputValues.CROUCH))
             {
                 initialize();
                 curtain.fadeToAlphaStatistics();
@@ -126,15 +126,14 @@ public class Game : MonoBehaviour
     private void performSplashScreen()
     {
         InputResult result = InputUtils.readInput();
-        if (result.get(InputValues.SHOOT))
+        if (result.get(InputValues.CROUCH))
         {
             _gameState = GameState.inmigrantsEntering;
             splashScreen.remove();
             initialize();
             duelStreet.stopWave();
 
-            curtain.fadeToBlackPeriod(periodModel.currentYear() + "-" +
-                          (periodModel.currentYear() + GameRules.yearsPerPeriod));
+            curtain.fadeToBlackPeriod(periodModel.currentYear() + ""); //+ "-"); // + (periodModel.currentYear() + GameRules.yearsPerPeriod));
             _gameState = GameState.FadeOutWavesCompleted;
 
         }

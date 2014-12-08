@@ -23,7 +23,6 @@ public class UIDialog : MonoBehaviour
     private bool sheriff;
     private bool sheriffSurrender;
     public  bool sheriffDied = false;
-    
 
     public UIDialog init(float delay, Font font, int fontSize, float fadeSpeed, bool sheriff, bool sheriffSurrender)
     {

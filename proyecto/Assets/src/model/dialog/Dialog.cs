@@ -94,7 +94,7 @@ public class Dialog
         dialogues.TryGetValue(r, out value);
 
         int i = randomValue.Next(0, value.Length);
-        return value[i];
+        return value[i].ToUpper();
     }
 
     public static string getToggleSheriffDialog()

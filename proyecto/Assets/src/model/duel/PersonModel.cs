@@ -50,7 +50,6 @@ public class PersonModel
 
     public bool canMove()
     {
-        return (Time.realtimeSinceStartup - standUpTime > GameRules.delayBetWeenStandAndShoot &&
-                Time.realtimeSinceStartup - shootTime > GameRules.ShootSpeed);
+        return ( Time.realtimeSinceStartup - shootTime > GameRules.ShootSpeed);
     }
 }

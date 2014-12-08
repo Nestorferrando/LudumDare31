@@ -68,6 +68,11 @@ public class Sheriff : MonoBehaviour
         this.model.setHiddenBehindBarrel(false);
         proposedState = PersonState.idle;
     }
+    public void performIdleAnimation()
+    {
+        proposedState = PersonState.idle;
+    }
+
 
 
     private void FixedUpdate()

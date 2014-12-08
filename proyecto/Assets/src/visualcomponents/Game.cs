@@ -43,6 +43,7 @@ public class Game : MonoBehaviour
       duelStreet.moveWave();
       _gameState = GameState.inmigrantsEntering;
       periodModel.reset();
+      city.Regenerate();
     }
 	
 	// Update is called once per frame
@@ -77,6 +78,8 @@ public class Game : MonoBehaviour
 	            {
                     periodModel.increasePeriod();
 	                waveCounter = 0;
+                    city.Regenerate();
+                    duelStreet.updateSheriffModel(new SheriffModel(Role.Criminal, Role.Criminal));
                     duelStreet.resetWave(InmigrationWaveGenerator.getCriminals(duelStreet.getSheriffModel(), city.CityModel.getCityUnbalance()));
 	                _gameState = GameState.fadeInWavesCompleted;
                     curtain.fadeToAlphaPeriod();
@@ -98,6 +101,12 @@ public class Game : MonoBehaviour
     {
         if (duelStreet.inmigrantsAlreadyFaded())
         {
+            for (int i = 0; i < duelStreet.ActiveInmigrants; i++)
+            {
+                if (duelStreet.GetInmigrantModel(i).Alive)
+                city.CityModel.AddIndividual(duelStreet.GetInmigrantModel(i).Role);
+            }
+
             duelStreet.resetWave(InmigrationWaveGenerator.getCriminals(duelStreet.getSheriffModel(),
                 city.CityModel.getCityUnbalance()));
             duelStreet.stopInmigrantsFade();
@@ -159,8 +168,6 @@ public class Game : MonoBehaviour
     {
         if (!duelStreet.isDuelModeActive())
         {
-            
-            
             switch (duelStreet.getDuelResult())
             {
                 case DuelResult.won:
@@ -174,6 +181,7 @@ public class Game : MonoBehaviour
                 case DuelResult.dead:
                     _gameState = GameState.inmigrantsLeave;
                     duelStreet.moveWave();
+                    dialogManager.setNewSheriffDialog();
 
                     break;
             }
@@ -186,10 +194,20 @@ public class Game : MonoBehaviour
         if (duelStreet.enemiesCloseFromFrontBarrels())
         {
             waveCounter++;
-            duelStreet.stopWave();
-            _gameState = GameState.preDuelSpeech;
-            speechTime = Time.realtimeSinceStartup;
-            dialogManager.setWaveDialog(duelStreet.GetInmigrantModel(0).Role);
+
+            if (duelStreet.getSheriffModel().Alive)
+            {
+                duelStreet.stopWave();
+                _gameState = GameState.preDuelSpeech;
+                speechTime = Time.realtimeSinceStartup;
+                dialogManager.setWaveDialog(duelStreet.GetInmigrantModel(0).Role);
+            }
+            else
+            {
+                duelStreet.startInmigrantsFade();
+                _gameState = GameState.inmigrantsLeave;
+            }
+
         }
     }
 

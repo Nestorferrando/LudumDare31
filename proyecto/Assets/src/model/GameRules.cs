@@ -17,9 +17,9 @@ using System.Text;
        public static readonly float antiRoleSpawnProbability = 0.5f;
        public static readonly int inmigrantWaveSize = 3;
         //---------------------------------------
-       public static readonly int wavesPerPeriod = 1;
+       public static readonly int wavesPerPeriod = 3;
 
-       public static readonly int sheriffBullets = 1;
+       public static readonly int sheriffBullets = 2;
 
         //---------------------------------------
        public static readonly float myKillSuccessRatio = 1.0f;
@@ -36,7 +36,7 @@ using System.Text;
        public static readonly float inmigrantCrouchIntervalRandom = 2.0f;
 
 
-       public static readonly float delayBetWeenStandAndShoot = 0.5f;
+       public static readonly float inmigrantDelayBetWeenStandAndShoot = 0.5f;
 
 
 

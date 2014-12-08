@@ -58,6 +58,6 @@ public class InmigrantModel : PersonModel
 
     public new bool canMove()
     {
-        return (base.canMove() &&  Time.realtimeSinceStartup - crouchTime > GameRules.inmigrantMinCrouchInverval);
+        return (base.canMove() && Time.realtimeSinceStartup - standUpTime > GameRules.inmigrantDelayBetWeenStandAndShoot && Time.realtimeSinceStartup - crouchTime > GameRules.inmigrantMinCrouchInverval);
     }
 }

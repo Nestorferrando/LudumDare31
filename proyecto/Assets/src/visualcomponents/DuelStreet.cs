@@ -47,6 +47,11 @@ public class DuelStreet : MonoBehaviour
 
     }
 
+    public int ActiveInmigrants
+    {
+        get { return activeInmigrants; }
+    }
+
     public void resetPeriod(SheriffModel model)
     {
         sheriff.Model = model;
@@ -74,6 +79,8 @@ public class DuelStreet : MonoBehaviour
         this.fadeTime = Time.realtimeSinceStartup;
     }
 
+
+
     public void stopInmigrantsFade()
     {
         this.inmigrantsFade = false;
@@ -92,6 +99,7 @@ public class DuelStreet : MonoBehaviour
     public void updateSheriffModel(SheriffModel model)
     {
         sheriff.Model = model;
+        sheriff.performIdleAnimation();
     }
 
     public SheriffModel getSheriffModel()
@@ -109,6 +117,7 @@ public class DuelStreet : MonoBehaviour
     {
         for (int i = 0; i < activeInmigrants; i++)
         {
+            if (inmigrants[i].Model.Alive)
             inmigrants[i].startMoving();
         }
 

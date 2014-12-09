@@ -18,7 +18,14 @@ public class StatisticsText : MonoBehaviour {
         string message="";
         if (survivedPeriods == GameRules.totalPeriods)
         {
-            message = "CONGRATULATONS!, your city has lived a prosper era.\n";
+            if (cityStatus.worstUnbalance() > GameRules.totalInfestation*0.6f)
+            {
+                message = "Not bad, your city barely survived.\n";
+            }
+            else
+            {
+                message = "CONGRATULATONS!, your city has lived a prosper era.\n";
+            }
         }
 
         else
@@ -30,7 +37,7 @@ public class StatisticsText : MonoBehaviour {
                 message = "Too many criminals came into your city,\n  your city has been spoiled and destroyed.\n\n";
 
             if (cityStatus.IndianUnbalance >= GameRules.totalInfestation)
-                message = "Too many indians came into your city and they took the control of it.\n\n";
+                message = "Too many indians came into your city and they took control of it.\n\n";
 
             if (cityStatus.MinerUnbalance >= GameRules.totalInfestation)
                 message = "Too many miners came into your city.\n  The city became too noisy and unconfortable.\n\n"; 

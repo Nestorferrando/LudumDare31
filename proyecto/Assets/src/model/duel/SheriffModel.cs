@@ -67,7 +67,10 @@ public class SheriffModel : PersonModel
 
     public new bool canMove()
     {
-        return (base.canMove() && Time.realtimeSinceStartup - cockTime > GameRules.sheriffCockSpeed);
+        return (
+            (Time.realtimeSinceStartup - shootTime > GameRules.SheriffShootSpeed) && 
+            
+            base.canMove() && Time.realtimeSinceStartup - cockTime > GameRules.sheriffCockSpeed);
     }
 
 

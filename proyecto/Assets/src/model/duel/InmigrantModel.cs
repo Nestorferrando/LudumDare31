@@ -43,9 +43,11 @@ public class InmigrantModel : PersonModel
     }
 
 
-    public void startDuel()
+    public void startDuel(bool firstTime)
     {
         crouchTime = Time.realtimeSinceStartup +  (float)(random.NextDouble() * GameRules.inmigrantCrouchIntervalRandom);
+        //three additional seconds if it is the first time
+        if (firstTime) crouchTime += 3;
         _hiddenBehindBarrel = true;
         state = PersonState.crouch;
     }
@@ -58,6 +60,8 @@ public class InmigrantModel : PersonModel
 
     public new bool canMove()
     {
-        return (base.canMove() && Time.realtimeSinceStartup - standUpTime > GameRules.inmigrantDelayBetWeenStandAndShoot && Time.realtimeSinceStartup - crouchTime > GameRules.inmigrantMinCrouchInverval);
+        return (  (Time.realtimeSinceStartup - shootTime > GameRules.InmigrantsShootSpeed) && 
+            
+            base.canMove() && Time.realtimeSinceStartup - standUpTime > GameRules.inmigrantDelayBetWeenStandAndShoot && Time.realtimeSinceStartup - crouchTime > GameRules.inmigrantMinCrouchInverval);
     }
 }

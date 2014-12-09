@@ -50,6 +50,6 @@ public class PersonModel
 
     public bool canMove()
     {
-        return ( Time.realtimeSinceStartup - shootTime > GameRules.ShootSpeed);
+        return (true);
     }
 }

@@ -55,6 +55,7 @@ public class Inmigrant : MonoBehaviour
 
     public void performShootAnimation()
     {
+         GetComponent<AudioSource>().Play();
         proposedState = PersonState.shooting;
     }
 

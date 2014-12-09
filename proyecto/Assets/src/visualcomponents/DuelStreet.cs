@@ -151,7 +151,7 @@ public class DuelStreet : MonoBehaviour
         }
     }
 
-    public void startDuelMode()
+    public void startDuelMode(bool fromTutorial)
     {
         icons.GameplayEnabled = true;
         enableGetInIcon(false);
@@ -164,7 +164,7 @@ public class DuelStreet : MonoBehaviour
         for (int i = 0; i < activeInmigrants; i++)
         {
             inmigrants[i].crouch();
-            inmigrants[i].Model.startDuel();
+            inmigrants[i].Model.startDuel(fromTutorial);
         }
     }
 

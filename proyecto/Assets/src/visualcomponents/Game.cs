@@ -101,7 +101,7 @@ public class Game : MonoBehaviour
 	            if (tutorial.TutorialFinished)
 	            {
                     tutorial.destroy();
-	                duelStreet.startDuelMode();
+	                duelStreet.startDuelMode(true);
 	                dialogManager.startDuelDialog();
 	                _gameState = GameState.duel;
 	            }
@@ -221,9 +221,13 @@ public class Game : MonoBehaviour
                     _gameState = GameState.tutorialState;
                     tutorial.runTutorial();
                 }
-                _gameState = GameState.duel;
-                duelStreet.startDuelMode();
-                dialogManager.startDuelDialog();
+                else
+                {
+                    _gameState = GameState.duel;
+                    duelStreet.startDuelMode(false);
+                    dialogManager.startDuelDialog();
+                }
+
             }
             if (result.get(InputValues.SHOOT))
             {
@@ -308,8 +312,7 @@ public class Game : MonoBehaviour
             }
             else
             {
-                curtain.fadeToBlackPeriod(periodModel.currentYear() + "-" +
-                                          (periodModel.currentYear() + GameRules.yearsPerPeriod));
+                curtain.fadeToBlackPeriod(periodModel.currentYear() + "");
                 _gameState = GameState.FadeOutWavesCompleted;
             }
         }

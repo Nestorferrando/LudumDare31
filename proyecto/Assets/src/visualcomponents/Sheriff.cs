@@ -41,6 +41,7 @@ public class Sheriff : MonoBehaviour
 
     public void performShootAnimation()
     {
+        GetComponent<AudioSource>().Play();
         proposedState = PersonState.shooting;
     }
 
